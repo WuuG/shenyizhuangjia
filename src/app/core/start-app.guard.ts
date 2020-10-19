@@ -16,12 +16,18 @@ export class StartAppGuard implements CanActivate {
       isLaunched: false,
       version: '2.0.0'
     });
+    const logined = this.localStorageService.get('login_ifo', {});
     if ( appConfig.isLaunched === false ) {
       appConfig.isLaunched = true;
       this.localStorageService.set('APP', appConfig);
       return true;
-    } else {
-      this.router.navigateByUrl('text');
+    }
+    else if (logined.UID === undefined || logined.UID === -1) {
+      this.router.navigateByUrl('passport/login');
+      return false;
+    }
+    else {
+      this.router.navigateByUrl('default');
       return false;
     }
   }

@@ -137,7 +137,7 @@ export class PassportServiceService {
       return undefined;
     }
     this.appuser = this.localStorageService.get('appuser_key', []);
-    console.log(this.appuser[login.UID].ShopName);
+    // console.log(this.appuser[login.UID].ShopName);
     return this.appuser[login.UID];
   }
 }
