@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      首页
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="calendar"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img src="assets/img/androidbanner.png" alt="">
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let s of sales">
+        <h6>{{s.title}}</h6>
+        <h4><span>{{s.current | number:'1.2-2'}}元</span></h4>
+        <p style='font-size:x-small'>
+          {{s.content}}
+          <span [class]="(s.current - s.previous) >0? 'less-equal': 'greater'">
+            {{s.current - s.previous | number:'1.2-2'}}
+          </span>&nbsp;
+          <ion-icon name="arrow-{{(s.current - s.previous) >0?'up':'down'}}-circle-outline"></ion-icon>
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

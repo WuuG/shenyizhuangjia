@@ -1,0 +1,30 @@
+import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { IonSlides } from '@ionic/angular';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+
+@Component({
+  selector: 'app-welcome',
+  templateUrl: './welcome.page.html',
+  styleUrls: ['./welcome.page.scss'],
+  encapsulation: ViewEncapsulation.None
+})
+export class WelcomePage implements OnInit {
+  showSkip = true;
+  @ViewChild('slides', {static: true}) slides: IonSlides;
+  constructor(private localStorageService: LocalStorageService,
+              private router: Router) {}
+  ngOnInit() {
+  }
+  onSkip(){
+    this.router.navigateByUrl('passport/signup');
+    // this.slides.slideTo(3);
+  }
+
+  onSlideWillChange(event) {
+    console.log(event);
+    this.slides.isEnd().then((end) => {
+      this.showSkip = !end;
+    });
+  }
+}

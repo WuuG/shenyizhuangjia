@@ -1,0 +1,153 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <div class="ion-text-center">
+    <img class="logo" src="assets/img/logo.png" alt="">
+  </div>
+  <ion-row>
+    <ion-col>
+      <img src="assets/img/registered_one.png" alt="" *ngIf="slideIndex!==0">
+      <img src="assets/img/registered_one_one.png" alt="" *ngIf="slideIndex===0">
+    </ion-col>
+
+    <ion-col class="ion-align-self-center">
+      <hr color="black">
+    </ion-col>
+
+    <ion-col>
+      <img src="assets/img/registered_two.png" alt="" *ngIf="slideIndex!==1">
+      <img src="assets/img/registered_two_two.png" alt="" *ngIf="slideIndex===1">
+    </ion-col>
+
+    <ion-col class="ion-align-self-center">
+      <hr color="black">
+    </ion-col>
+
+    <ion-col>
+      <img src="assets/img/registered_three.png" alt="" *ngIf="slideIndex!==2" >
+      <img src="assets/img/registered_three_three.png" alt="" *ngIf="slideIndex===2">
+    </ion-col>
+
+    <ion-col class="ion-align-self-center">
+      <hr color="black">
+    </ion-col>
+
+    <ion-col>
+      <img src="assets/img/register_four.png" alt="" *ngIf="slideIndex!==3">
+      <img src="assets/img/register_four_four.png" alt="" *ngIf="slideIndex===3">
+    </ion-col>
+
+  </ion-row>
+
+  <ion-slides #signupSlides (ionSlideDidChange)="onSlideDidChange($event)">
+    <ion-slide>
+      <form style="width: 90%" #phoneForm="ngForm" (ngSubmit)="onSubmitPhone(phoneForm)"> 
+        <ion-list>
+          <ion-item>     
+            <ion-input name="phone" type="number" placeholder="请输入电话号码"
+              required pattern="^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,3,5-9]))\d{8}$"
+              [(ngModel)]="signup.phone" #phone="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-text class="ion-text-left" color="danger" *ngIf="(phone.invalid && phone.touched) || submited">
+            <h5 [hidden]="!phone.errors?.required" class="padding-start">请输入手机号码</h5>
+            <h5 [hidden]="!phone.errors?.pattern" class="padding-start">输入的手机号码不正确！</h5>
+          </ion-text>
+
+          <div class="ion-padding-horizontal">
+            <ion-button type="submit" expand="full" color="primary" [disabled]="phoneForm.invalid">下一步</ion-button>
+            <ion-button type="submit" expand="full" color="primary" >访客登录</ion-button>
+          </div>
+        </ion-list>
+        <!-- <ion-button type="submit" expand="block" slot="start"  (click)="onNext()">下一步</ion-button> -->
+      </form>
+    </ion-slide>
+
+    <ion-slide>
+      <form style="width: 90%" #codeForm="ngForm" (ngSubmit)="onValidateCode()">
+        <ion-list lines="none">
+          <ion-item>
+            <ion-input  name="code" #code="ngModel" [(ngModel)]="signup.code" slot="start" placeholder="输入验证码" 
+            required pattern="\d{4}$"></ion-input>
+            <ion-button color="primary" expand="full" slot="end" (click)="onSendCode()"
+            [disabled]="time != 0"
+            (click)="countDown()"
+            >{{time ? "发送验证码("+time+")":"发送验证码"}}</ion-button>
+          </ion-item>
+
+          <ion-button color="primary" expand="full" slot="end" (click)="onPrevious()" >上一步</ion-button>
+
+          <ion-button color="primary" expand="full" slot="end" (click)="onValidateCode()" [disabled]="code.invalid">下一步</ion-button>
+        </ion-list>
+      </form>
+    </ion-slide>
+
+    <ion-slide>
+      <form style="width: 90%" #userifoForm="ngForm" (ngSubmit)="onSubmitUserIfo(userifoForm)">
+        <ion-list>
+          <ion-item>
+            <ion-input  name="shopName" #shopName="ngModel" [(ngModel)]="signup.shopName"  placeholder="请输入店铺名称" 
+            required pattern="^.{1,8}$">
+          </ion-input>
+          </ion-item>
+           <ion-text class="ion-text-left" color="danger" *ngIf="(shopName.invalid && shopName.touched)">
+            <h5 [hidden]="!shopName.errors?.required" class="padding-start">请输入店铺名称</h5>
+            <h5 [hidden]="!shopName.errors?.pattern" class="padding-start">输入的店铺名称格式不正确！</h5>
+          </ion-text>
+
+          <ion-item>
+            <ion-input  name="email" #email="ngModel" [(ngModel)]="signup.email"  placeholder="请输入电子邮箱" 
+            required pattern="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+          </ion-input>
+          </ion-item>
+          <ion-text class="ion-text-left" color="danger" *ngIf="(email.invalid && email.touched)">
+            <h5 [hidden]="!email.errors?.required" class="padding-start">请输入邮箱</h5>
+            <h5 [hidden]="!email.errors?.pattern" class="padding-start">输入的邮箱格式不正确！</h5>
+          </ion-text>
+
+          <ion-item>
+            <ion-input type="password" name="password" #password="ngModel" [(ngModel)]="signup.password"  placeholder="请输入登录密码" 
+            required pattern="^[a-zA-Z]\w{5,17}$">
+          </ion-input>
+          </ion-item>
+          <ion-text class="ion-text-left" color="danger" *ngIf="(password.invalid && password.touched)">
+            <h5 [hidden]="!password.errors?.required" class="padding-start">请输入密码</h5>
+            <h5 [hidden]="!password.errors?.pattern" class="padding-start">密码需要以字母开头,长度在6~18之间!</h5>
+          </ion-text>
+
+          <ion-item>
+            <ion-input type="password" name="confirmPassword" #confirmPassword="ngModel" [(ngModel)]="signup.confirmPassword"  placeholder="请输入确认密码" 
+            required pattern="^[a-zA-Z]\w{5,17}$">
+          </ion-input>
+          </ion-item>
+          <ion-text class="ion-text-left" color="danger" *ngIf="(confirmPassword.invalid && confirmPassword.touched )">
+            <h5 [hidden]="!confirmPassword.errors?.required" class="padding-start">请输入确认密码</h5>
+          </ion-text>
+
+          <ion-button color="primary" expand="full" slot="end" (click)="onPrevious()" >上一步</ion-button>
+
+          <ion-button type="submit" color="primary" expand="full" slot="end" [disabled]="userifoForm.invalid" >下一步</ion-button>
+        </ion-list>
+      </form>
+    </ion-slide>
+
+    <ion-slide>
+      <form>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-text color="primary">
+              <h1>注册成功！</h1>
+            </ion-text>
+          </ion-item>
+
+          <ion-button color="primary" expand="block" routerLink="/passport/login">登录</ion-button>
+        </ion-list>
+      </form>
+    </ion-slide>
+  </ion-slides>
+  <wgd-copyright [bottom]="'20px'"></wgd-copyright>
+</ion-content>
