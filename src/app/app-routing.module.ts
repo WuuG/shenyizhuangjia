@@ -29,6 +29,10 @@ const routes: Routes = [
     path: 'default',
     loadChildren: () => import('./pages/default/default.module').then( m => m.DefaultPageModule)
   },
+  {
+    path: 'setting',
+    loadChildren: () => import('./pages/setting/setting.module').then( m => m.SettingPageModule)
+  },
 ];
 
 @NgModule({
