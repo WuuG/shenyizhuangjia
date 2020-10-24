@@ -1,4 +1,3 @@
-import { Data } from '@angular/router';
 import { LoginAccount } from './login-account';
 import { User } from './user';
 import { LocalStorageService } from './../../shared/services/local-storage.service';
@@ -65,9 +64,19 @@ export class PassportServiceService {
   async login(phoneOrEmail: string, password: string): Promise<AjaxResult> {
     this.appaccount = this.localStorageService.get('appaccount_key', []);
     const confirm = this.appaccount[phoneOrEmail];
-    console.log('已经开始要进入了');
+    if (!phoneOrEmail) {
+      return new AjaxResult(false, null, {
+        message: '请输入账号',
+        details: ''
+      });
+    }
+    if (!password) {
+      return new AjaxResult(false, null, {
+        message: '请输入密码',
+        details: ''
+      });
+    }
     if (confirm !== undefined && confirm.PasswordToken === password) {
-      console.log('已经进入了');
       this.setlogintime(confirm.UserId);
       return new AjaxResult(true, '登录成功！');
     }

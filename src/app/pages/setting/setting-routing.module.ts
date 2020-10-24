@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { SettingPage } from './setting.page';
+import { ChangePasswordPage } from './shop/change-password/change-password.page';
 import { ShopEditPage } from './shop/shop-edit/shop-edit.page';
 import { ShopPage } from './shop/shop.page';
 
@@ -15,8 +16,12 @@ const routes: Routes = [
     component: ShopPage,
   },
   {
-    path: 'shop',
+    path: 'shop/edit',
     component: ShopEditPage,
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordPage,
   }
 ];
 

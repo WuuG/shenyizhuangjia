@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CopyrightComponent } from './components/copyright/copyright.component';
+import { ConfirmDirective } from './directives/confirm.directive';
 
 
 
 @NgModule({
   declarations: [
     CopyrightComponent,
+    ConfirmDirective,
   ],
   imports: [
     CommonModule,
