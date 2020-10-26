@@ -48,6 +48,9 @@ export class AppComponent implements OnInit {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
   }
+  /**
+   * 用一个islogin来给User初始化，防止进入default的时候找不到ShopName
+   */
   islogin(): boolean{
     this.user = this.passportService.getloginUser();
     if (this.user === undefined) {
