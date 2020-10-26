@@ -136,7 +136,7 @@ export class PassportServiceService {
   }
   /**
    * 取得登录信息，判断是否登录，并且是否超时。
-   * 若以登录并未超时那么返回id对应的user数据。
+   * 若已登录并且未超时那么返回id对应的user数据。否则返回未定义。
    */
   getloginUser(): User|undefined{
     const login = this.localStorageService.get('login_ifo', [

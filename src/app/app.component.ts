@@ -1,3 +1,5 @@
+import { User } from './pages/passport/user';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { PassportServiceService } from './pages/passport/passport-service.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,7 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
   appPages: Array<{title: string, url: string, icon: string}>;
-  public user: any;
+  public user: User;
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(
     private platform: Platform,
@@ -45,5 +47,17 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+  }
+  islogin(): boolean{
+    this.user = this.passportService.getloginUser();
+    if (this.user === undefined) {
+      this.user = {
+        ShopName: 'none',
+        Phone: 'none',
+        Email: 'none',
+        CreateDate: new Date(),
+      };
+    }
+    return true;
   }
 }
