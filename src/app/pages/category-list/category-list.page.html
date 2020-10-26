@@ -49,7 +49,10 @@
             <ion-label>
               {{activeCategory&&activeCategory.children.length?'共'+activeCategory.children.length+'种商品':'目前没有小分类'}}
             </ion-label>
-            <ion-icon (click)="onPresentActionSheet()" slot="end" size="large" name="ellipsis-horizontal-outline"></ion-icon>
+            <button>
+              <ion-icon (click)="onPresentActionSheet()" slot="end" size="large" name="ellipsis-horizontal-outline"></ion-icon>
+            </button>
+            <!-- <ion-icon (click)="onPresentActionSheet()" slot="end" size="large" name="ellipsis-horizontal-outline"></ion-icon> -->
           </ion-item>
         </ion-list>
       </ion-col>
