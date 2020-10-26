@@ -41,12 +41,12 @@ export class CategoryListPage implements OnInit {
           handler: () => {
             console.log('Destructive clicked');
           }
-        },{
+        }, {
           text: '编辑分类',
           handler: () => {
             console.log('Archive clicked');
           }
-        },{
+        }, {
           text: '取消',
           role: 'cancel',
           handler: () => {
