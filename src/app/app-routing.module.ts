@@ -5,7 +5,7 @@ import { StartAppGuard } from './core/start-app.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'welcome',
+    redirectTo: 'default',
     pathMatch: 'full'
   },
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: 'welcome',
     loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule),
-    canActivate : [StartAppGuard]
+    // canActivate : [StartAppGuard]
   },
   {
     path: 'text',
@@ -27,7 +27,8 @@ const routes: Routes = [
   },
   {
     path: 'default',
-    loadChildren: () => import('./pages/default/default.module').then( m => m.DefaultPageModule)
+    loadChildren: () => import('./pages/default/default.module').then( m => m.DefaultPageModule),
+    canActivate : [StartAppGuard]
   },
   {
     path: 'setting',
