@@ -1,18 +1,41 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>setting</ion-title>
+  <ion-toolbar color='primary'>
+    <ion-back-button color='light' slot='start' text='首页'></ion-back-button>
+    <ion-title>店铺设置</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color='light'>
   <ion-list inset="true">
-    <ion-item detail href="" lines='inset'>
+    <ion-item detail href="" lines='inset' routerLink="/setting/shop">
       <ion-label>店铺设置</ion-label>
     </ion-item>
-    <ion-item>
-      <ion-label>联系客服</ion-label>
-      <ion-note slot="end" ><a href="tel:13003933558">13003933558</a></ion-note>
+
+    <ion-item detail href="" lines='inset' routerLink="/setting/change-password">
+      <ion-label>密码</ion-label>
     </ion-item>
   </ion-list>
-  <!-- 其他省略 -->
+
+  <ion-list inset="true">
+    <ion-item detail href="" lines='inset' routerLink="/setting/about-me">
+      <ion-label>关于我们</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>联系客服</ion-label>
+      <ion-note slot="end" ><a href="tel:14803933558">14803933558</a></ion-note>
+    </ion-item>
+
+    <ion-item detail href="" lines='inset'>
+      <ion-label slot="start" >版本号: 1.8.9</ion-label>
+      <ion-note slot="end">检查更新</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-list inset="true" lines="none">
+    <ion-item detail href="" lines='inset' (click)="unlogin()">
+      <ion-label>安全退出</ion-label>
+    </ion-item>
+  </ion-list>
+  <wgd-copyright [bottom]="'20px'"></wgd-copyright>
 </ion-content>

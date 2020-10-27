@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AboutMePage } from './about-me/about-me.page';
+import { ChangePasswordPage } from './change-password/change-password.page';
 
 import { SettingPage } from './setting.page';
-import { ChangePasswordPage } from './shop/change-password/change-password.page';
 import { ShopEditPage } from './shop/shop-edit/shop-edit.page';
 import { ShopPage } from './shop/shop.page';
 
@@ -20,8 +21,12 @@ const routes: Routes = [
     component: ShopEditPage,
   },
   {
+    path: 'about-me',
+    component: AboutMePage
+  },
+  {
     path: 'change-password',
-    component: ChangePasswordPage,
+    component: ChangePasswordPage
   }
 ];
 

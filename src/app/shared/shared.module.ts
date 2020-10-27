@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CopyrightComponent } from './components/copyright/copyright.component';
 import { ConfirmDirective } from './directives/confirm.directive';
+import { PhonFormatDirective } from './directives/phon-format.directive';
 
 
 
@@ -12,6 +13,7 @@ import { ConfirmDirective } from './directives/confirm.directive';
   declarations: [
     CopyrightComponent,
     ConfirmDirective,
+    PhonFormatDirective,
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,8 @@ import { ConfirmDirective } from './directives/confirm.directive';
     FormsModule,
     IonicModule,
     CopyrightComponent,
+    ConfirmDirective,
+    PhonFormatDirective,
   ]
 })
 export class SharedModule { }

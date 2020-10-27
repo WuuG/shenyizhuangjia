@@ -1,9 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>shopEdit</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="返回"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="light">
+  <form>
+    <ion-list inset>
+      <ion-item>
+        <ion-input type="text" placeholder="{{title}}" name="valueInput" #valueInput="ngModel" [(ngModel)]="value">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button (click)="onSave()" expand="block" fill="solid" shape="round">
+      保存
+    </ion-button>
+  </form>
 
 </ion-content>

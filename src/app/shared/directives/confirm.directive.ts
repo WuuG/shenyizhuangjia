@@ -1,5 +1,5 @@
 import { Directive, Input } from '@angular/core';
-import { AbstractControl, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
+import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
 
 export function confirmValidator(confirm: string): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} => { // 传入绑定表单的formControl
@@ -12,10 +12,18 @@ export function confirmValidator(confirm: string): ValidatorFn {
 }
 
 @Directive({
-  selector: '[appConfirm]'
+  // tslint:disable-next-line: directive-selector
+  selector: '[wgdConfirm]',
+  providers: [
+    {
+      provide: NG_VALIDATORS,
+      useExisting: ConfirmDirective,
+      multi: true
+    }
+  ]
 })
 export class ConfirmDirective implements Validator{
-  @Input('appConfirm') confirm: string;
+  @Input('wgdConfirm') confirm: string;
 
   constructor() { }
   validate(control: AbstractControl): ValidationErrors {

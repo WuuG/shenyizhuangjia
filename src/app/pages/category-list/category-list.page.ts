@@ -67,10 +67,10 @@ export class CategoryListPage implements OnInit {
       return 'light';
     }
   }
-  getItemClass(id: number): boolean {
+  getItemClass(id: number): string {
     if (id === this.activeCategory.id) {
-      return true;
+      return 'item-active';
     }
-    return false;
+    return '';
   }
 }

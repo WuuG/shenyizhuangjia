@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./change-password.page.scss'],
 })
 export class ChangePasswordPage implements OnInit {
-
+  oldpass: string;
+  newpass: string;
+  confirmpass: string;
   constructor() { }
 
   ngOnInit() {
