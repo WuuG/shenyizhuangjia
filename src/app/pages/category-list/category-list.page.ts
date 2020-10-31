@@ -14,7 +14,10 @@ export class CategoryListPage implements OnInit {
   activeCategory: Category;
   activeSubCategories: Category;
 
-  constructor(private categoryService: CategoryService, private actionSheetCtrl: ActionSheetController) {
+  constructor(private categoryService: CategoryService,
+              private actionSheetCtrl: ActionSheetController,
+              private router: Router,
+              ) {
     categoryService.getAll().then(data => {
       this.categories = data.result;
       if (this.categories) {
@@ -40,11 +43,13 @@ export class CategoryListPage implements OnInit {
           role: 'destructive',
           handler: () => {
             console.log('Destructive clicked');
+            this.gotoAddCategory();
           }
         }, {
           text: '编辑分类',
           handler: () => {
             console.log('Archive clicked');
+            this.gotoEditCategory();
           }
         }, {
           text: '取消',
@@ -58,7 +63,7 @@ export class CategoryListPage implements OnInit {
     await actionSheet.present();
   }
   gotoAddCategory() {
-    // Router
+    this.router.navigateByUrl('/category/add');
   }
   getItemColor(id: number): string {
     if (id === this.activeCategory.id) {
@@ -72,5 +77,8 @@ export class CategoryListPage implements OnInit {
       return 'item-active';
     }
     return '';
+  }
+  gotoEditCategory() {
+    this.router.navigateByUrl('/category/edit');
   }
 }
