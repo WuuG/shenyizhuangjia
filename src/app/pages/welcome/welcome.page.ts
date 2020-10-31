@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, MenuController } from '@ionic/angular';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
@@ -12,8 +12,9 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 export class WelcomePage implements OnInit {
   showSkip = true;
   @ViewChild('slides', {static: true}) slides: IonSlides;
-  constructor(private localStorageService: LocalStorageService,
-              private router: Router) {}
+  constructor(private localStorageService: LocalStorageService, private router: Router, private menuController: MenuController) {
+    this.menuController.enable(false);
+    }
   ngOnInit() {
   }
   onSkip(){

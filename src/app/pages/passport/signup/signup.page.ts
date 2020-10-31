@@ -2,7 +2,7 @@ import { PassportServiceService } from './../passport-service.service';
 import { AuthenticationCodeService } from './../authentication-code.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { IonSlides, ToastController } from '@ionic/angular';
+import { IonSlides, MenuController, ToastController } from '@ionic/angular';
 import { Signup } from '../signup';
 
 import { interval } from 'rxjs';
@@ -22,9 +22,14 @@ export class SignupPage implements OnInit {
   time = 0;
   // code: any;
   // tslint:disable-next-line: no-shadowed-variable
-  constructor(private authcodeservise: AuthenticationCodeService,
-              public toastController: ToastController,
-              private passportServiceService: PassportServiceService) { }
+  constructor(
+    private authcodeservise: AuthenticationCodeService,
+    public toastController: ToastController,
+    private passportServiceService: PassportServiceService,
+    private menuController: MenuController,
+  ) {
+    this.menuController.enable(false);
+  }
   signup: Signup = {
     phone: '',
     email: '',
@@ -34,7 +39,7 @@ export class SignupPage implements OnInit {
     code: ''
   };
   slideIndex = 0;
-  @ViewChild('signupSlides', {static: true}) signupSlides: IonSlides;
+  @ViewChild('signupSlides', { static: true }) signupSlides: IonSlides;
   countDown() {
     this.time = 60;
     interval(1000)
@@ -48,17 +53,17 @@ export class SignupPage implements OnInit {
         // complete: () => {
         //   this.isDisabled = false;
         // }
-    });
-}
+      });
+  }
   ngOnInit() {
     this.signupSlides.lockSwipeToNext(true);
   }
-  onNext(){
+  onNext() {
     this.signupSlides.lockSwipeToNext(false);
     this.signupSlides.slideNext();
     this.signupSlides.lockSwipeToNext(true);
   }
-  onPrevious(){
+  onPrevious() {
     this.signupSlides.lockSwipeToNext(false);
     this.signupSlides.slidePrev();
     this.signupSlides.lockSwipeToNext(true);
@@ -69,7 +74,7 @@ export class SignupPage implements OnInit {
   onSubmitPhone(form: NgForm) {
     this.submited = true;
     const phonecheck = this.passportServiceService.phoneconfirm(this.signup.phone);
-    if (!phonecheck){
+    if (!phonecheck) {
       this.presentToast('手机号已注册！');
       return;
     }
@@ -77,16 +82,16 @@ export class SignupPage implements OnInit {
       this.onNext();
     }
   }
-  onSendCode(){
+  onSendCode() {
     const code = this.authcodeservise.createCode(4);
     this.presentToastWithOptions(code);
   }
-  onValidateCode(){
+  onValidateCode() {
     const match = this.authcodeservise.validate(this.signup.code);
-    if (match){
+    if (match) {
       this.onNext();
     }
-    else{
+    else {
       this.presentToast('您输入的验证码错误!');
     }
   }
@@ -96,12 +101,12 @@ export class SignupPage implements OnInit {
       message,
       buttons: [
         {
-        text: '取消',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
+          text: '取消',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
         }
-      }
       ]
     });
     toast.present();
@@ -131,15 +136,15 @@ export class SignupPage implements OnInit {
     });
     toast.present();
   }
-  onpassportconfirm(){
-    if (this.signup.password !== this.signup.confirmPassword){
+  onpassportconfirm() {
+    if (this.signup.password !== this.signup.confirmPassword) {
       this.presentToast('两次密码输入不正确');
       return;
     }
   }
   async onSubmitUserIfo(userifoForm: NgForm) {
     console.log('ok');
-    if (!userifoForm.valid){
+    if (!userifoForm.valid) {
       return;
     }
     this.onpassportconfirm();

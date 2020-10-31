@@ -32,7 +32,7 @@ export class SettingService {
     for (const s of this.shops) {
 
       if (s.id === id) {
-        console.log(s)
+        console.log(s);
         shop = s;
         break;
       }

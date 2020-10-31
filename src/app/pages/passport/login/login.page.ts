@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { PassportServiceService } from './../passport-service.service';
 import { NgForm } from '@angular/forms';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, MenuController, ToastController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -16,8 +16,11 @@ export class LoginPage implements OnInit {
     private toastController: ToastController,
     private alertController: AlertController,
     private passportServiceService: PassportServiceService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private menuController: MenuController,
+  ) {
+    this.menuController.enable(false);
+  }
 
   ngOnInit() {
   }
