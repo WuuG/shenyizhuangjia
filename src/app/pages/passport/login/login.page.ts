@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { PassportServiceService } from './../passport-service.service';
 import { NgForm } from '@angular/forms';
-import { AlertController, MenuController, ToastController } from '@ionic/angular';
+import { AlertController, MenuController, NavController, ToastController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -18,6 +18,7 @@ export class LoginPage implements OnInit {
     private passportServiceService: PassportServiceService,
     private router: Router,
     private menuController: MenuController,
+    private navController: NavController,
   ) {
     this.menuController.enable(false);
   }
@@ -42,6 +43,7 @@ export class LoginPage implements OnInit {
     const result = await this.passportServiceService.login(this.username, this.password);
     if (result.success) {
       // 验证成功，自行完成页面跳转
+      this.navController.setDirection('root');
       this.router.navigateByUrl('default');
     } else {
       this.alertController.create({

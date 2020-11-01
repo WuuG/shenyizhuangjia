@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    console.log('init_app');
   }
 
   ngOnInit() {
@@ -47,20 +48,22 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+    console.log('init');
   }
   /**
    * 用一个islogin来给User初始化，防止进入default的时候找不到ShopName
+   * 加问好，这里就用不着了
    */
-  islogin(): boolean{
-    this.user = this.passportService.getloginUser();
-    if (this.user === undefined) {
-      this.user = {
-        ShopName: 'none',
-        Phone: 'none',
-        Email: 'none',
-        CreateDate: new Date(),
-      };
-    }
-    return true;
-  }
+  // islogin(): boolean{
+  //   this.user = this.passportService.getloginUser();
+  //   if (this.user === undefined) {
+  //     this.user = {
+  //       ShopName: 'none',
+  //       Phone: 'none',
+  //       Email: 'none',
+  //       CreateDate: new Date(),
+  //     };
+  //   }
+  //   return true;
+  // }
 }
