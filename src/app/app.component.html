@@ -1,7 +1,7 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
     <!-- 之前用*ngIf="User"判断，会使得登录后跳转至首页的时候 左上角按钮消失 -->
-    <ion-menu contentId="main-content" type="overlay" *ngIf="islogin()">
+    <ion-menu contentId="main-content" type="overlay" >
       <!-- *ngIf="user" -->
       <ion-content>
         <!-- <ion-list id="inbox-list">
@@ -11,9 +11,9 @@
             <ion-item color="medium">
               <ion-label>
                 <ion-text>
-                  <h2>{{user.ShopName}}</h2>
+                  <h2>{{user?.ShopName}}</h2>
                 </ion-text>
-                <p>{{user.Phone}}</p>
+                <p>{{user?.Phone}}</p>
               </ion-label>
               <ion-badge slot="end" color="primary">高级版</ion-badge>
             </ion-item>
