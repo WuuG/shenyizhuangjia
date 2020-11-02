@@ -17,7 +17,7 @@
             <ion-label>大分类</ion-label>
           </ion-item>
           <ion-item lines="none" *ngFor="let category of categories" [color]="getItemColor(category.id)"
-            (click)="onSelectCategory(category.id)" [class]="getItemClass(category.id)">
+            (click)="onSelectCategory(category)" [class]="getItemClass(category.id)">
             <ion-label>{{category.name}}</ion-label>
           </ion-item>
         </ion-list>
@@ -28,12 +28,12 @@
           <ion-item lines="full" detail>
             <ion-label>小分类</ion-label>
           </ion-item>
-          <ion-item lines="none" detail>
+          <ion-item lines="none" detail (click)="onSelect(activeCategory)">
             <ion-label>无分类进入大分类</ion-label>
           </ion-item>
           <form *ngIf="activeCategory">
             <ion-item detail *ngFor="let category of activeCategory.children"
-              (click)="onSelectSubCategory(category.id)">
+              (click)="onSelect(category)">
               <ion-label>{{category.name}}</ion-label>
             </ion-item>
           </form>

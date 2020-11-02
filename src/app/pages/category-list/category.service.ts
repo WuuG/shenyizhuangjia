@@ -3,6 +3,8 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { Injectable } from '@angular/core';
 import { AjaxResult } from 'src/app/shared/class/ajax-result';
 import { CATEGORIES } from 'src/app/shared/mock.categories';
+import { Observable, Subject } from 'rxjs';
+import { ActiveCategory } from 'src/app/shared/active-category';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ import { CATEGORIES } from 'src/app/shared/mock.categories';
 export class CategoryService {
   activeCategory: any;
   categories: Category[]
+  categorySubject = new Subject<ActiveCategory>();
   constructor(private localStorageService: LocalStorageService) {
     this.activeCategory = { id: 5, name: '默认类别' };
     this.getAll()
@@ -147,7 +150,7 @@ export class CategoryService {
       children: []
     };
     return category;
-  } 
+  }
   deleteCategoryById(id: number): boolean {
     const tmp = this.localStorageService.get('Category', CATEGORIES);
     for (let i = 0; i < tmp.length; i++) {
@@ -201,5 +204,8 @@ export class CategoryService {
       }
     }
     return -1;
+  }
+  watchCategory(): Observable<ActiveCategory> {
+    return this.categorySubject.asObservable();
   }
 }
