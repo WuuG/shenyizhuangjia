@@ -1,7 +1,7 @@
+import { Category } from './../../shared/category';
 import { Router } from '@angular/router';
 import { CategoryService } from './category.service';
 import { Component, OnInit } from '@angular/core';
-import { Category } from 'src/app/shared/category';
 import { ActionSheetController } from '@ionic/angular';
 
 @Component({
@@ -15,9 +15,9 @@ export class CategoryListPage implements OnInit {
   activeSubCategories: Category;
 
   constructor(private categoryService: CategoryService,
-              private actionSheetCtrl: ActionSheetController,
-              private router: Router,
-              ) {
+    private actionSheetCtrl: ActionSheetController,
+    private router: Router,
+  ) {
     categoryService.getAll().then(data => {
       this.categories = data.result;
       if (this.categories) {
@@ -26,6 +26,14 @@ export class CategoryListPage implements OnInit {
     });
   }
 
+  ionViewWillEnter() {
+    this.categoryService.getAll().then((data) => {
+        this.categories = data.result;
+        if (this.categories) {
+            this.activeCategory = this.categories[0];
+        }
+    });
+}
   ngOnInit() {
   }
   onSelectCategory(id: number) {
@@ -62,8 +70,15 @@ export class CategoryListPage implements OnInit {
     });
     await actionSheet.present();
   }
-  gotoAddCategory() {
-    this.router.navigateByUrl('/category/add');
+  gotoAddCategory(isMain = false) {
+    if (isMain){
+      this.router.navigate(['/category/add'])
+
+    }else{
+      this.router.navigate(['/category/add'],
+      { queryParams: { id: this.activeCategory.id, name: this.activeCategory.name } });
+    }
+ 
   }
   getItemColor(id: number): string {
     if (id === this.activeCategory.id) {
