@@ -1,11 +1,11 @@
-import { ActiveCategory } from './../../shared/active-category';
 import { Router } from '@angular/router';
-import { ProductService } from './product.service';
 import { ActionSheetController, AlertController } from '@ionic/angular';
-import { CategoryService } from './../category-list/category.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Product } from './product';
+import { Product } from '../product';
+import { ActiveCategory } from 'src/app/shared/active-category';
+import { CategoryService } from '../../category-list/category.service';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-add',
@@ -97,7 +97,7 @@ export class ProductAddPage implements OnInit, OnDestroy {
           this.initProduct();
           this.product.categoryName = '默认分类';
         } else {
-          this.router.navigateByUrl('/productList');
+          this.router.navigateByUrl('/product/list');
         }
       } else {
         const alert = await this.AlertController.create({
@@ -109,7 +109,7 @@ export class ProductAddPage implements OnInit, OnDestroy {
       }
     });
   }
-  gotoCategyList() {
+  selectCategory() {
     this.router.navigate(['/category'], {
       queryParams: {
         From : 'ProductAdd'
