@@ -16,6 +16,7 @@ export class CategoryListPage implements OnInit {
   activeCategory: Category;
   activeSubCategories: Category;
   From = 'acac';
+  categoryChangeSubscription = null;
   constructor(private categoryService: CategoryService,
     private actionSheetCtrl: ActionSheetController,
     private router: Router,
@@ -25,11 +26,20 @@ export class CategoryListPage implements OnInit {
     this.activatedRoute.queryParams.subscribe(queryParams => {
       this.From = queryParams.From;
     });
+
     categoryService.getAll().then(data => {
       this.categories = data.result;
       if (this.categories) {
         this.activeCategory = this.categories[0];
       }
+    });
+    this.categoryChangeSubscription = this.categoryService.watchChange().subscribe(b => {
+      categoryService.getAll().then(data => {
+        this.categories = data.result;
+        if (this.categories) {
+          this.activeCategory = this.categories[0];
+        }
+      });
     });
   }
 
@@ -49,8 +59,8 @@ export class CategoryListPage implements OnInit {
   // onSelectSubCategory(id: number) {
   //   this.activeSubCategories = this.activeCategory.children[id % 10 - 1];
   // }
-  onSelect(category: Category):boolean {
-    console.log("Form =",this.From);
+  onSelect(category: Category): boolean {
+    console.log("Form =", this.From);
     if (this.From === 'ProductAdd') {
       let activeCategory = {
         id: category.id,
@@ -61,7 +71,7 @@ export class CategoryListPage implements OnInit {
       return true;
     }
     return false;
-    
+
   }
 
   async onPresentActionSheet() {

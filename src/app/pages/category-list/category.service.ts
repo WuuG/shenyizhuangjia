@@ -1,4 +1,4 @@
-import { Category } from './../../shared/category';
+import { Category } from 'src/app/shared/category';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { Injectable } from '@angular/core';
 import { AjaxResult } from 'src/app/shared/class/ajax-result';
@@ -13,6 +13,7 @@ export class CategoryService {
   activeCategory: any;
   categories: Category[]
   categorySubject = new Subject<ActiveCategory>();
+  private changed = new Subject<boolean>();
   constructor(private localStorageService: LocalStorageService) {
     this.activeCategory = { id: 5, name: '默认类别' };
     this.getAll()
@@ -27,6 +28,8 @@ export class CategoryService {
       unAuthorizedRequest: false
     };
   }
+
+  watchChange() {return this.changed.asObservable();}
 
   async getById(id: number): Promise<Category> {
 
@@ -115,7 +118,9 @@ export class CategoryService {
   update(category: Category): boolean {
     const cat = this.localStorageService.get('Category', CATEGORIES);
     for (const c of cat) {
+      console.log("id=", category.id);
       if (category.id === c.id) {
+        console.log("update")
         c.name = category.name;
         c.children = category.children;
         this.localStorageService.set('Category', cat);
@@ -177,16 +182,18 @@ export class CategoryService {
     }
     return false;
   }
-  modifyCategory(cg: Category): boolean {
-    const index = this.findCategoryIndexById(cg.id);
+  modifyCategory(category: Category): boolean {
+    const index = this.findCategoryIndexById(category.id);
     if (index === -1) {
       return false;
     }
     let tmp = this.localStorageService.get('Category', CATEGORIES);
-    tmp[index] = cg;
-    this.update(tmp);
+    tmp[index] = category;
+    this.localStorageService.set('Category', tmp);
+    this.changed.next(true);
     return true;
   }
+  
   findCategoryIndexById(id: number) {
     const cg = this.localStorageService.get('Category', CATEGORIES);
     for (let i = 0; i < cg.length; i++) {
