@@ -94,6 +94,6 @@ export class CategoryListPage implements OnInit {
     return '';
   }
   gotoEditCategory() {
-    this.router.navigateByUrl('/category/edit');
+    this.router.navigate(['/category/edit'], {queryParams: {'categoryId': this.activeCategory.id}});
   }
 }

@@ -29,7 +29,7 @@ export class CategoryService {
 
     await this.getAll()
     console.log(this.categories)
-    return this.categories.find(c => {console.log(c.id,id,c.id===id);return c.id === id})
+    return this.categories.find(c => { console.log(c.id, id, c.id === id); return c.id === id })
 
   }
   addCategory(category: Category) {
@@ -132,5 +132,74 @@ export class CategoryService {
       hash[cat.name] = 1
     }
     return true;
+  }
+  findCategoryById(id: string): Category {
+    const cg = this.localStorageService.get('Category', CATEGORIES);
+    console.log("find所有的商品類別=", cg)
+    for (let i = 0; i < cg.length; i++) {
+      if (cg[i].id.toString() === id) {
+        return cg[i];
+      }
+    }
+    const category: Category = {
+      id: -1,
+      name: '',
+      children: []
+    };
+    return category;
+  } 
+  deleteCategoryById(id: number): boolean {
+    const tmp = this.localStorageService.get('Category', CATEGORIES);
+    for (let i = 0; i < tmp.length; i++) {
+      if (tmp[i].id === id) {
+        tmp.splice(i, 1);
+        this.localStorageService.set('Category', tmp);
+        return true;
+      }
+    }
+    return false;
+  }
+  deleteSubCategoryById(category: Category, id: number): boolean {
+    if (category == null) {
+      return false;
+    }
+    for (let i = 0; i < category.children.length; i++) {
+      if (category.children[i].id === id) {
+        const index = this.findCategoryIndexByName(category.name);
+        let tmp = this.localStorageService.get('Category', CATEGORIES);
+        tmp[index].children.splice(i, 1);
+        this.localStorageService.set('Category', tmp);
+        return true;
+      }
+    }
+    return false;
+  }
+  modifyCategory(cg: Category): boolean {
+    const index = this.findCategoryIndexById(cg.id);
+    if (index === -1) {
+      return false;
+    }
+    let tmp = this.localStorageService.get('Category', CATEGORIES);
+    tmp[index] = cg;
+    this.update(tmp);
+    return true;
+  }
+  findCategoryIndexById(id: number) {
+    const cg = this.localStorageService.get('Category', CATEGORIES);
+    for (let i = 0; i < cg.length; i++) {
+      if (cg[i].id === id) {
+        return i;
+      }
+    }
+    return -1;
+  }
+  findCategoryIndexByName(name: string): number {
+    const cg = this.localStorageService.get('Category', CATEGORIES);
+    for (let i = 0; i < cg.length; i++) {
+      if (cg[i].name === name) {
+        return i;
+      }
+    }
+    return -1;
   }
 }

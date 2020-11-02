@@ -1,3 +1,4 @@
+import { ModalController, NavParams } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category-name-edit.page.scss'],
 })
 export class CategoryNameEditPage implements OnInit {
-
-  constructor() { }
+  name: string;
+  constructor(
+    private modalController: ModalController,
+    private navParams: NavParams
+  ) {
+    this.name = this.navParams.data['value'];
+  }
 
   ngOnInit() {
   }
+  dismiss(name?: string) {
+    this.modalController.dismiss(name);
+  }
 
+  onSave() {
+    this.dismiss(this.name);
+  }
 }

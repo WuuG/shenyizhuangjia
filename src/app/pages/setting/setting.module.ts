@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { SettingPageRoutingModule } from './setting-routing.module';
 
 import { SettingPage } from './setting.page';
+import { AboutMePage } from './about-me/about-me.page';
 
 @NgModule({
   imports: [
@@ -20,6 +21,11 @@ import { SettingPage } from './setting.page';
     SettingPageRoutingModule,
     SharedModule
   ],
-  declarations: [SettingPage, ChangePasswordPage, ShopPage, ShopEditPage]
+  declarations: [
+    SettingPage,
+    ChangePasswordPage,
+    ShopPage, 
+    ShopEditPage,
+    AboutMePage,]
 })
 export class SettingPageModule { }
