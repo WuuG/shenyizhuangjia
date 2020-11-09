@@ -29,7 +29,7 @@ export class CategoryService {
     };
   }
 
-  watchChange() {return this.changed.asObservable();}
+  watchChange() { return this.changed.asObservable(); }
 
   async getById(id: number): Promise<Category> {
 
@@ -193,7 +193,7 @@ export class CategoryService {
     this.changed.next(true);
     return true;
   }
-  
+
   findCategoryIndexById(id: number) {
     const cg = this.localStorageService.get('Category', CATEGORIES);
     for (let i = 0; i < cg.length; i++) {
@@ -215,4 +215,5 @@ export class CategoryService {
   watchCategory(): Observable<ActiveCategory> {
     return this.categorySubject.asObservable();
   }
+
 }
