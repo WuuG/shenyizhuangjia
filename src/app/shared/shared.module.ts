@@ -6,7 +6,9 @@ import { IonicModule } from '@ionic/angular';
 import { CopyrightComponent } from './components/copyright/copyright.component';
 import { ConfirmDirective } from './directives/confirm.directive';
 import { PhonFormatDirective } from './directives/phon-format.directive';
-
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 
 @NgModule({
@@ -21,7 +23,10 @@ import { PhonFormatDirective } from './directives/phon-format.directive';
     IonicModule,
   ],
   providers: [
-    LocalStorageService
+    LocalStorageService,
+    BarcodeScanner,
+    Camera,
+    ImagePicker,
   ],
   exports: [
     CommonModule,

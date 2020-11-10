@@ -140,10 +140,10 @@ export class CategoryEditPage implements OnInit {
     alert.present()
   }
   async toast(message: string) {
-    const alert = await this.toastCtrl.create({
+    const toast = await this.toastCtrl.create({
       message,
       duration: 2000,
     })
-    alert.present()
+    toast.present()
   }
 }
