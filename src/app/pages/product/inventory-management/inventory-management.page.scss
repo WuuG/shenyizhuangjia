@@ -1,0 +1,28 @@
+.div-custom {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.segment{
+    --background:white;
+    height: 35px;
+}
+.segmentButton{
+    --border-color:var(--ion-color-primary);
+    --color:var(--ion-color-primary);
+    --color-checked: white;
+    --indicator-color: var(--ion-color-primary);
+}
+.itemHeight {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.text {
+    text-align: right;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    font-size: medium;
+    color: var(--ion-color-medium);;
+}

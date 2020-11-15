@@ -1,3 +1,4 @@
+import { AlertController } from '@ionic/angular';
 import { Product } from 'src/app/pages/product/product';
 import { LocalStorageService } from './../../shared/services/local-storage.service';
 import { Injectable } from '@angular/core';
@@ -10,7 +11,14 @@ import { ProductPageResult } from 'src/app/shared/interfaces/product-page-result
 export class ProductService {
   constructor(
     private localStorageService: LocalStorageService,
+    private alertController:AlertController,
   ) { }
+  alert(message: string,buttons: [string]) {
+    this.alertController.create({
+      message,
+      buttons:['确定'],
+    })
+  }
   async insert(input: Product): Promise<AjaxResult> {
     const tempproduct = this.localStorageService.get('product', []);
     input.id = this.autoIncrement(tempproduct);
@@ -53,5 +61,20 @@ export class ProductService {
     list.result = productPageResult;
     return list;
   }
-  
+  getProductById(productID: number): Product {
+    let product: Product;
+    let products = this.localStorageService.get('product',[]);
+    for(let i = 0;i < products.length; i++) {
+      // console.log(products[i].id,productID,i,"是否相等",productID);
+      if(products[i].id == productID) {
+        console.log(products[i].id,"是否相等",productID);
+        product = products[i];
+      }
+    }
+    if(!product) {
+      this.alert('无法找到这个产品',['确定'])
+    }
+    // console.log('product:',product);
+    return product;
+  }
 }

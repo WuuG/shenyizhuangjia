@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="返回"></ion-back-button>
+    </ion-buttons>
+    <ion-title>修改库存</ion-title>
+   <ion-buttons slot="end">
+     <ion-button (click)="onClick()">
+       出入库记录
+     </ion-button>
+   </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+<form (ngSubmit)="onSubmit()" #inventoryForm="ngForm">
+  <div class="div-custom">
+    <ion-segment value="in-stock" (ionChange)="segmentChanged($event)" class="segment"  >
+      <ion-segment-button value="in-stock" class="segmentButton" expand="full" >
+        <ion-label>入库</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="out-stock" class="segmentButton" expand="full">
+        <ion-label>出库</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    </div>
+    <ion-list>
+      <ion-item *ngIf="this.inventory.type == 'in-stock'" class="itemHeight">
+        <ion-label>入库数量</ion-label>
+        <ion-input placeholder="0.0" class="ion-text-right" type="number" 
+        name="inStockNumber" #inStockNumber="ngModel" [(ngModel)]="inventory.amount"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="this.inventory.type == 'out-stock'" class="itemHeight">
+        <ion-label>出库数量</ion-label>
+        <ion-input placeholder="0.0" class="ion-text-right" type="number" 
+        name="outStockNumber" #outStockNumber="ngModel" [(ngModel)]="inventory.amount"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="itemHeight">
+        <ion-label>备注</ion-label>
+        <ion-input type="text" name="remarks" #remarks="ngModel" [(ngModel)]="inventory.remarks"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-text  >
+      <h4 class="text">当前库存:</h4>
+    </ion-text>
+    <section style="margin-right: 15px;margin-left: 15px;">
+      <ion-button expand="full" color="primary">确定入库</ion-button>
+    </section>
+</form>
+
+
+</ion-content>

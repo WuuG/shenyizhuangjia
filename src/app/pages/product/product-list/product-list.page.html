@@ -32,7 +32,7 @@
     </ion-item>
   </ion-list>
   <ion-list lines="none">
-    <ion-item *ngFor="let product of products" color="light">
+    <ion-item *ngFor="let product of products" color="light"  [routerLink]="['/product/info', product.id]"   >
       <ion-thumbnail slot="start" class="ion-margin">
         <img src="assets/img/c_goodspicture.png" alt="暂无图片" *ngIf="product.images.length === 0">
         <img src={{product.images[0]}} alt="" *ngIf="product.images.length !== 0">

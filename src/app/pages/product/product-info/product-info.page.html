@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="商品列表"></ion-back-button>
+    </ion-buttons>
+    <ion-title>商品详情</ion-title>
+    <ion-icon style="margin-right: 10px;" name="ellipsis-vertical-outline" (click)="onEditProduct($event)" slot="end"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="product.images.length === 0">
+      <ion-label style="font-size: 50px;">无</ion-label>
+      <ion-thumbnail>
+        <img src="assets/img/supplier_icon.png" />
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item *ngIf="product.images.length !== 0">
+      <ion-thumbnail *ngFor="let img of product.images">
+        <img src="img" />
+      </ion-thumbnail>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>名称</ion-label>
+      <ion-note>{{product.name}}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>分类</ion-label>
+      <ion-note>{{product.categoryName}}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>条码</ion-label>
+      <ion-note>{{product.barcode}}</ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item-divider>
+
+    </ion-item-divider>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>进价</ion-label>
+      <ion-note>￥{{product.purchasePrice | number:'1.2-2'}}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>售价</ion-label>
+      <ion-note>￥{{product.price | number:'1.2-2'}}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>规格</ion-label>
+      <ion-note>{{product.standard}}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>库存</ion-label>
+      <ion-note>{{product.inventory}}</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="light" style="min-height: 100px;padding-top: 20px;">
+    <ion-buttons>
+      <ion-button [routerLink]="['/product/inventory',productID]" expand="full" fill="solid" color="primary" size="large" class="button_size">
+        出/入库
+      </ion-button>
+      <ion-button (click)="onClick()" expand="full" fill="solid" color="primary" size="large" class="button_size">
+        分享
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

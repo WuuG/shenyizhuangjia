@@ -82,5 +82,7 @@ export class ProductListPage implements OnInit {
       }
     }, 1500);
   }
-
+  // gotoproductInfo(productID: number) {
+  //   this.router.navigate(['/product/info',);
+  // }
 }
