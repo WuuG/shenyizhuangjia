@@ -1,4 +1,4 @@
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Product } from 'src/app/pages/product/product';
 import { LocalStorageService } from './../../shared/services/local-storage.service';
 import { Injectable } from '@angular/core';
@@ -12,12 +12,21 @@ export class ProductService {
   constructor(
     private localStorageService: LocalStorageService,
     private alertController:AlertController,
+    private toastController:ToastController,
   ) { }
-  alert(message: string,buttons: [string]) {
-    this.alertController.create({
+  async alert(message: string,buttons: [string]) {
+    let alert = await this.alertController.create({
       message,
       buttons:['确定'],
     })
+    alert.present();
+  }
+  async toast(message: string) {
+   let toastMs = await this.toastController.create({
+    message,
+    duration:2000,
+   }) 
+    toastMs.present();
   }
   async insert(input: Product): Promise<AjaxResult> {
     const tempproduct = this.localStorageService.get('product', []);
@@ -76,5 +85,12 @@ export class ProductService {
     }
     // console.log('product:',product);
     return product;
+  }
+  editProduct(ID: number, newProduct: Product) {
+    let products = this.localStorageService.get('product',[]);
+    console.log('编辑商品中 product =',products[ID])
+    products[ID] = newProduct;
+    this.localStorageService.set('product',products);
+    console.log('商品改动成功 product =',products[ID])
   }
 }
