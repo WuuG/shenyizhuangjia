@@ -36,7 +36,7 @@ export class ProductInfoPage implements OnInit {
   async onEditProduct(ev: any) {
     const popover = await this.popoverController.create({
       component: ProductEditPopoverComponent,
-      cssClass: 'custom',
+      cssClass: 'edit-top-popover',
       event: ev,
       translucent: false,
       componentProps: {

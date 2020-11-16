@@ -1,7 +1,7 @@
 <!-- <ion-header> -->
   <ion-toolbar class="ion-no-border">
-    <ion-buttons slot="end">
-      <ion-button color="primary" [hidden]="!showSkip" fill="solid" expand="block" (click)="onSkip()">
+    <ion-buttons slot="end" class="padding-top">
+      <ion-button  color="primary" [hidden]="!showSkip" fill="solid" expand="block" (click)="onSkip()">
         跳过
       </ion-button>
     </ion-buttons>
@@ -9,7 +9,7 @@
 <!-- </ion-header> -->
 
 <ion-content>
-  <ion-slides scrollbar="true" pager="false" #slides (ionSlideWillChange)="onSlideWillChange($event)" class = "full-screen">
+  <ion-slides  pager="false" #slides (ionSlideWillChange)="onSlideWillChange($event)" class = "full-screen">
     <ion-slide>
       <img src="/assets/img/splsh_one.png" alt="">
     </ion-slide>
