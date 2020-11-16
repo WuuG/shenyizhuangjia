@@ -18,7 +18,7 @@
     </ion-item>
     <ion-item *ngIf="product.images.length !== 0">
       <ion-thumbnail *ngFor="let img of product.images">
-        <img src="img" />
+        <img src={{img}} />
       </ion-thumbnail>
     </ion-item>
   </ion-list>
@@ -36,11 +36,8 @@
       <ion-note>{{product.barcode}}</ion-note>
     </ion-item>
   </ion-list>
-  <ion-list>
     <ion-item-divider>
-
     </ion-item-divider>
-  </ion-list>
   <ion-list>
     <ion-item>
       <ion-label>进价</ion-label>

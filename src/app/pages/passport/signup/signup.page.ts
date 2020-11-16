@@ -78,6 +78,7 @@ export class SignupPage implements OnInit {
       this.presentToast('手机号已注册！');
       return;
     }
+
     if (form.valid) {
       this.onNext();
     }
@@ -139,7 +140,7 @@ export class SignupPage implements OnInit {
   onpassportconfirm() {
     if (this.signup.password !== this.signup.confirmPassword) {
       this.presentToast('两次密码输入不正确');
-      return;
+      return true
     }
   }
   async onSubmitUserIfo(userifoForm: NgForm) {
@@ -147,7 +148,9 @@ export class SignupPage implements OnInit {
     if (!userifoForm.valid) {
       return;
     }
-    this.onpassportconfirm();
+    if(this.onpassportconfirm()) {
+      return;
+    }
     const isSignup = await this.passportServiceService.signup(this.signup);
     if (isSignup.success) {
       this.onNext();

@@ -36,7 +36,8 @@ export class AppComponent implements OnInit {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.statusBar.overlaysWebView(true);
+      // 沉浸倒是可以，问题是CSS样式好像没什么用，可能是我不知道要放在那里把
+      // this.statusBar.overlaysWebView(true);
       this.splashScreen.hide();
     });
     console.log('init_app');
