@@ -15,7 +15,7 @@
 <ion-content color="light">
   <form (ngSubmit)="onsubmitStockInfo()" #inventoryForm="ngForm">
     <div class="div-custom">
-      <ion-segment value="in-stock" (ionChange)="segmentChanged($event)" class="segment">
+      <ion-segment value="in-stock" (ionChange)="segmentChanged($event)" class="segment" mode="ios">
         <ion-segment-button value="in-stock" class="segmentButton" expand="full">
           <ion-label>入库</ion-label>
         </ion-segment-button>
@@ -53,8 +53,11 @@
     <ion-text>
       <h4 class="text">当前库存:{{product.inventory}}</h4>
     </ion-text>
-    <section style="margin-right: 15px;margin-left: 15px;">
+    <section style="margin-right: 15px;margin-left: 15px;" *ngIf="this.inventory.type == 'in-stock'">
       <ion-button expand="full" color="primary" type="submit" [disabled]="inventoryForm.invalid" >确定入库</ion-button>
+    </section>
+    <section style="margin-right: 15px;margin-left: 15px;" *ngIf="this.inventory.type == 'out-stock'">
+      <ion-button expand="full" color="primary" type="submit" [disabled]="inventoryForm.invalid" >确定出库</ion-button>
     </section>
   </form>
 

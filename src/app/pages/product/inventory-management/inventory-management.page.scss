@@ -6,13 +6,13 @@
 }
 .segment{
     --background:white;
-    height: 35px;
 }
 .segmentButton{
-    --border-color:var(--ion-color-primary);
-    --color:var(--ion-color-primary);
+    --color: var(--ion-color-primary);
     --color-checked: white;
     --indicator-color: var(--ion-color-primary);
+    --border-color: var(--ion-color-primary);
+    --background-checked:var(--ion-color-primary);
 }
 .itemHeight {
     margin-top: 10px;

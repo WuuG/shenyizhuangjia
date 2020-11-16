@@ -47,4 +47,7 @@ export class ProductInfoPage implements OnInit {
   
     await popover.present();
   }
+  onshare() {
+    
+  }
 }
