@@ -38,7 +38,11 @@ export class ProductInfoPage implements OnInit {
       component: ProductEditPopoverComponent,
       cssClass: 'custom',
       event: ev,
-      translucent: false
+      translucent: false,
+      componentProps: {
+        passProduct: this.product,
+        passID: this.productID
+      }
     });
   
     await popover.present();

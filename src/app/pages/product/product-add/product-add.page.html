@@ -12,10 +12,10 @@
   <form #productForm="ngForm">
     <ion-list class="toplist">
       <ion-item  lines="none">
-        <ion-thumbnail *ngFor="let image of product.images">
+        <ion-thumbnail *ngFor="let image of product.images" slot="start">
           <img  src={{image}}>
         </ion-thumbnail>
-        <ion-thumbnail (click)="showActiveSheet()" slot="start">
+        <ion-thumbnail (click)="showActiveSheet()" slot="start" *ngIf="!(product.images.length > 2)">
           <img src="assets/img/supplier_icon.png">
         </ion-thumbnail>
         <ion-note color="medium" slot="end">上传图片</ion-note>

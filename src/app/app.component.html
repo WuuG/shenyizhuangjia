@@ -2,7 +2,7 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay" >
       <ion-content>
-          <ion-list>
+          <ion-list *ngIf="islogin()">
             <ion-item color="medium">
               <ion-label>
                 <ion-text>

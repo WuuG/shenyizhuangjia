@@ -9,7 +9,7 @@ import { Product } from '../product';
 import { ActiveCategory } from 'src/app/shared/active-category';
 import { CategoryService } from '../../category-list/category.service';
 import { ProductService } from '../product.service';
-import { ImagePickerOptions } from '@ionic-native/image-picker';
+import { ImagePickerOptions,OutputType } from '@ionic-native/image-picker';
 
 @Component({
   selector: 'app-product-add',
@@ -30,6 +30,7 @@ export class ProductAddPage implements OnInit, OnDestroy {
   private imagePickerOption : ImagePickerOptions = {
     maximumImagesCount: 3,
     quality: 80,
+    outputType:OutputType.DATA_URL,
   }
   constructor(
     private categoryService: CategoryService,

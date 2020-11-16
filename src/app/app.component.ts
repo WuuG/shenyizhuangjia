@@ -3,7 +3,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { PassportServiceService } from './pages/passport/passport-service.service';
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private passportService: PassportServiceService
+    private passportService: PassportServiceService,
   ) {
     this.initializeApp();
     this.appPages = [
@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
     console.log('init_app');
   }
 
+
   ngOnInit() {
     this.user = this.passportService.getloginUser();
     // console.log(this.user);
@@ -51,20 +52,17 @@ export class AppComponent implements OnInit {
     }
     console.log('init');
   }
-  /**
-   * 用一个islogin来给User初始化，防止进入default的时候找不到ShopName
-   * 加问好，这里就用不着了
-   */
-  // islogin(): boolean{
-  //   this.user = this.passportService.getloginUser();
-  //   if (this.user === undefined) {
-  //     this.user = {
-  //       ShopName: 'none',
-  //       Phone: 'none',
-  //       Email: 'none',
-  //       CreateDate: new Date(),
-  //     };
-  //   }
-  //   return true;
-  // }
+
+  islogin(): boolean{
+    this.user = this.passportService.getloginUser();
+    if (this.user === undefined) {
+      this.user = {
+        ShopName: 'none',
+        Phone: 'none',
+        Email: 'none',
+        CreateDate: new Date(),
+      };
+    }
+    return this.user !== undefined;
+  }
 }

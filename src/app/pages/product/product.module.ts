@@ -5,6 +5,7 @@ import { ProductListPage } from './product-list/product-list.page';
 import { ProductAddPage } from './product-add/product-add.page';
 import { ProductInfoPage } from './product-info/product-info.page';
 import { InventoryManagementPage } from './inventory-management/inventory-management.page';
+import { ProductEditPage } from './product-edit/product-edit.page';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { InventoryManagementPage } from './inventory-management/inventory-manage
     ProductListPage,
     ProductAddPage,
     ProductInfoPage,
-    InventoryManagementPage
+    InventoryManagementPage,
+    ProductEditPage,
   ]
 })
 export class ProductPageModule {}

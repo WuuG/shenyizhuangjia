@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 import { Sales } from './sales';
 
 @Component({
@@ -9,7 +10,10 @@ import { Sales } from './sales';
 export class DefaultPage implements OnInit {
   public sales: Array<Sales>;
 
-  constructor() {
+  constructor(
+    private menuController:MenuController,
+
+  ) {
      this.sales = this.getSales();
    }
 
@@ -28,5 +32,9 @@ export class DefaultPage implements OnInit {
       { title: '本周', content: '比同期', previous: lastyearweek, current: week },
       { title: '本月', content: '比同期', previous: lastyearmonth, current: month },
     ];
+  }
+  ionViewWillEnter(){
+    console.log(  this.menuController.isEnabled())
+    this.menuController.enable(true);
   }
 }

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Product } from 'src/app/pages/product/product';
 import { LocalStorageService } from './../../shared/services/local-storage.service';
@@ -13,6 +14,7 @@ export class ProductService {
     private localStorageService: LocalStorageService,
     private alertController:AlertController,
     private toastController:ToastController,
+    private router:Router,
   ) { }
   async alert(message: string,buttons: [string]) {
     let alert = await this.alertController.create({
@@ -78,13 +80,13 @@ export class ProductService {
       if(products[i].id == productID) {
         console.log(products[i].id,"是否相等",productID);
         product = products[i];
+        return product
       }
     }
     if(!product) {
       this.alert('无法找到这个产品',['确定'])
     }
     // console.log('product:',product);
-    return product;
   }
   editProduct(ID: number, newProduct: Product) {
     let products = this.localStorageService.get('product',[]);
@@ -92,5 +94,16 @@ export class ProductService {
     products[ID] = newProduct;
     this.localStorageService.set('product',products);
     console.log('商品改动成功 product =',products[ID])
+  }
+  DelProduct(ID: number) {
+    let products = this.localStorageService.get('product',[]);
+    for(let i = 0;i < products.length;i++) {
+      if(products[i].id == ID) {
+        products.splice(i,1);
+        this.localStorageService.set('product',products);
+        this.router.navigate(['/product/list'])
+        return
+      }
+    }
   }
 }
