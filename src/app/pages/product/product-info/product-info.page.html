@@ -62,14 +62,18 @@
 </ion-content>
 
 <ion-footer class="ion-no-border">
-  <ion-toolbar color="light" style="min-height: 100px;padding-top: 20px;">
-    <ion-buttons>
-      <ion-button [routerLink]="['/product/inventory',productID]" expand="full" fill="solid" color="primary" size="large" class="button_size">
-        出/入库
-      </ion-button>
-      <ion-button (click)="onClick()" expand="full" fill="solid" color="primary" size="large" class="button_size">
-        分享
-      </ion-button>
-    </ion-buttons>
+  <ion-toolbar color="light" style="min-height: 100px;padding-top: 10px;padding-bottom: 10px;">
+    <ion-row>
+      <ion-col >
+          <ion-button [routerLink]="['/product/inventory',productID]" expand="full" fill="solid" color="primary"  class="button_size">
+            出/入库
+          </ion-button>
+      </ion-col>
+      <ion-col>
+          <ion-button (click)="onClick()" expand="full" fill="solid" color="primary"  class="button_size">
+            分享
+          </ion-button>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-footer>
