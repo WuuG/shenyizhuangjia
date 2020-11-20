@@ -1,4 +1,3 @@
-import { Data } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -12,7 +11,7 @@ export class CopyrightComponent implements OnInit {
   text: string;
   constructor() {
     const year = (new Date()).getFullYear();
-    this.text = `2010-${year} 生意专家`;
+    this.text = `2010-${year} 生意专家byWuu`;
     this.bottom = '10px';
    }
 

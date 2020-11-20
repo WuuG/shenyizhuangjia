@@ -38,6 +38,7 @@ export class ProductListPage implements OnInit {
     this.total = 0,
     this.queryTerm = '';
     this.categoryId = -1;
+    this.products = [];
   }
   async refreshList() {
     try {
@@ -55,7 +56,7 @@ export class ProductListPage implements OnInit {
     this.router.navigateByUrl('/category')
   }
   onRefresh(event) {
-    this.products = [];
+    // this.products = [];
     this.currentIndex = 1;
     console.log('Begin async operation');
     setTimeout(() => {  
@@ -85,4 +86,5 @@ export class ProductListPage implements OnInit {
   // gotoproductInfo(productID: number) {
   //   this.router.navigate(['/product/info',);
   // }
+
 }

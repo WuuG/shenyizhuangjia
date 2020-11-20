@@ -14,8 +14,8 @@
 </ion-header>
 
 <ion-toolbar color="light">
-    <ion-searchbar placeholder="请输入商品名称，拼音，数字...">
-    </ion-searchbar>
+  <ion-searchbar placeholder="请输入商品名称，拼音，数字...">
+  </ion-searchbar>
   <ion-buttons slot="end">
     <ion-button expand="block" fill="outline" color="primary">
       商品盘点
@@ -23,16 +23,36 @@
   </ion-buttons>
 </ion-toolbar>
 
-<ion-content>
+<ion-content *ngIf="products.length === 0">
+  <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-down-outline" pullingText="下拉可以刷新" refreshingSpinner="circles"
+      refreshingText="正在加载...">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+  <img src="assets/img/commodity_no.png" alt="">
+  <ion-text color="medium">
+    <p>您还没有任何商品信息</p>
+    <p>您可以</p>
+  </ion-text>
+  <ion-button [routerLink]="['/product/add']"   expand="block" fill="solid" color="primary">
+    新增商品
+  </ion-button>
+  <wgd-copyright></wgd-copyright>
+</ion-content>
+
+
+
+<ion-content *ngIf="products.length !== 0">
   <ion-list lines="none">
     <ion-item>
-      <ion-label>总库存  3402件，总成本 98028元 </ion-label>
+      <ion-label>总库存 3402件，总成本 98028元 </ion-label>
       <ion-icon class="icon" slot="end" name="notifications"></ion-icon>
-      <ion-icon class="icon" slot="end" name="add" [routerLink]="['/product/add']" ></ion-icon>
+      <ion-icon class="icon" slot="end" name="add" [routerLink]="['/product/add']"></ion-icon>
     </ion-item>
   </ion-list>
   <ion-list lines="none">
-    <ion-item *ngFor="let product of products" color="light"  [routerLink]="['/product/info', product.id]"   >
+    <ion-item *ngFor="let product of products" color="light" [routerLink]="['/product/info', product.id]">
       <ion-thumbnail slot="start" class="ion-margin">
         <img src="assets/img/c_goodspicture.png" alt="暂无图片" *ngIf="product.images.length === 0">
         <img src={{product.images[0]}} alt="" *ngIf="product.images.length !== 0">
@@ -46,17 +66,12 @@
     </ion-item>
   </ion-list>
   <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)">
-    <ion-refresher-content
-            pullingIcon="arrow-down-outline"
-            pullingText="下拉可以刷新"
-            refreshingSpinner="circles"
-            refreshingText="正在加载...">
+    <ion-refresher-content pullingIcon="arrow-down-outline" pullingText="下拉可以刷新" refreshingSpinner="circles"
+      refreshingText="正在加载...">
     </ion-refresher-content>
   </ion-refresher>
   <ion-infinite-scroll threshold="100px" (ionInfinite)="onInfinite($event)">
-    <ion-infinite-scroll-content
-            loadingSpinner="bubbles"
-            loadingText="加载更多商品数据...">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多商品数据...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
