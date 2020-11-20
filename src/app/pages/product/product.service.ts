@@ -68,8 +68,10 @@ export class ProductService {
     let productsCost: number = 0;
     let productsinventory: number = 0;
     for(let i = 0; i < Allproduct.length;i++) {
-      productsCost += Allproduct[i].price;
-      productsinventory += Allproduct[i].inventory
+      console.log(Allproduct[i].purchasePrice);
+      
+      productsCost += (Allproduct[i].inventory * Allproduct[i].purchasePrice)? (Allproduct[i].inventory * Allproduct[i].purchasePrice): 0; 
+      productsinventory +=    (Allproduct[i].inventory)?Allproduct[i].inventory:0 ;
     }
     let products = Allproduct.slice(0 ,(index * size -1))
     const productPageResult: ProductPageResult = {

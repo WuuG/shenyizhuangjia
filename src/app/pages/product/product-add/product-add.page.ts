@@ -31,6 +31,7 @@ export class ProductAddPage implements OnInit, OnDestroy {
     maximumImagesCount: 3,
     quality: 80,
     outputType:OutputType.DATA_URL,
+    
   }
   constructor(
     private categoryService: CategoryService,
@@ -63,8 +64,8 @@ export class ProductAddPage implements OnInit, OnDestroy {
     this.product = {
       id: 0,
       name: '',
-      categoryId: null,
-      categoryName: '',
+      categoryId: 5,
+      categoryName: '默认类别',
       category: null,
       barcode: '',
       images: [],
@@ -134,6 +135,9 @@ export class ProductAddPage implements OnInit, OnDestroy {
     });
   }
   async onSave(ct: boolean = false) {
+    if(!this.product.inventory) {
+      this.product.inventory = 0;
+    }
     this.productService.insert(this.product).then(async (data) => {
       if (data.success) {
         this.alerterr('提示', '添加成功', ['确定'])

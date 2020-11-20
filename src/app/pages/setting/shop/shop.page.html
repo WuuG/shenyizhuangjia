@@ -7,41 +7,42 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="light">
   <ion-list inset="true" lines="none">
-    <ion-item routerLink="/setting/shop/edit" [queryParams]="{title:'店铺名称',property:'Name'}" detail>
+    <ion-item routerLink="/setting/shop/edit" [queryParams]="{title:'店铺名称',property:'Name'}" detail mode="ios">
       <ion-label>店铺名称</ion-label>
-      <ion-note item-end>{{shop.Name}}</ion-note>
+      <ion-note >{{shop.Name}}</ion-note>
     </ion-item>
-    <ion-item routerLink="/setting/shop/edit" [queryParams]="{title:'店铺简称',property:'SimpleName'}" detail>
+    <ion-item routerLink="/setting/shop/edit" [queryParams]="{title:'店铺简称',property:'SimpleName'}" detail  mode="ios">
       <ion-label>店铺简称</ion-label>
-      <ion-note item-end>{{shop.SimpleName}}</ion-note>
+      <ion-note >{{shop.SimpleName}}</ion-note>
     </ion-item>
-    <ion-item >
+    <ion-item  mode="ios" >
       <ion-label>注册时间</ion-label>
-      <ion-note item-end>{{user.CreateDate | date: "yyyy-MM-dd HH:mm:ss"}}</ion-note>
+      <ion-note >{{user.CreateDate | date: "yyyy-MM-dd HH:mm:ss"}}</ion-note>
     </ion-item>
-    <ion-item >
+    <ion-item  mode="ios">
       <ion-label>手机号码</ion-label>
-      <ion-note item-end>{{user.Phone}}</ion-note>
-    </ion-item>
+      <ion-note >{{user.Phone}}</ion-note>
+    </ion-item >
   </ion-list>
+
   <ion-list inset="true" lines="none">
-    <ion-item >
+    <ion-item  mode="ios">
       <ion-label>电子邮件</ion-label>
-      <ion-note item-end>{{user.Email}}</ion-note>
-    </ion-item>
-    <ion-item routerLink="/setting/shop/edit" [queryParams]="{title:'店主姓名',property:'HostName'}" detail>
+      <ion-note >{{user.Email}}</ion-note>
+    </ion-item >
+    <ion-item routerLink="/setting/shop/edit" [queryParams]="{title:'店主姓名',property:'HostName'}" detail  mode="ios">
       <ion-label>店主姓名</ion-label>
-      <ion-note item-end>{{shop.HostName}}</ion-note>
-    </ion-item>
-    <ion-item routerLink="/setting/shop/edit" [queryParams]="{title:'店铺电话',property:'TelePhone'}" detail>
+      <ion-note >{{shop.HostName}}</ion-note>
+    </ion-item >
+    <ion-item  mode="ios" routerLink="/setting/shop/edit" [queryParams]="{title:'店铺电话',property:'TelePhone'}" detail>
       <ion-label>店铺电话</ion-label>
-      <ion-note item-end>{{shop.TelePhone}}</ion-note>
+      <ion-note >{{shop.TelePhone}}</ion-note>
     </ion-item>
-    <ion-item detail>
+    <ion-item detail  mode="ios">
       <ion-label>行业类型</ion-label>
-      <ion-note item-end></ion-note>
+      <ion-note ></ion-note>
     </ion-item>
   </ion-list>
   <wgd-copyright [bottom]="'30px'"></wgd-copyright>

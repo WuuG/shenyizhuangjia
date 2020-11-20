@@ -11,9 +11,9 @@
 <ion-content non-padding>
   <form #productForm="ngForm">
     <ion-list class="toplist">
-      <ion-item  lines="none">
+      <ion-item lines="none">
         <ion-thumbnail *ngFor="let image of product.images" slot="start">
-          <img  src={{image}}>
+          <img src={{image}}>
         </ion-thumbnail>
         <ion-thumbnail (click)="showActiveSheet()" slot="start" *ngIf="!(product.images.length > 2)">
           <img src="assets/img/supplier_icon.png">
@@ -22,19 +22,23 @@
       </ion-item>
     </ion-list>
 
-    <ion-list >
+    <ion-list>
       <ion-item>
         <ion-label position="fixed">条码</ion-label>
-        <ion-input name="barCode" placeholder="输入商品条码" [(ngModel)]="product.barcode" #barCode="ngModel"></ion-input>
+        <ion-input name="barCode" placeholder="输入商品条码" [(ngModel)]="product.barcode" #barCode="ngModel"
+          pattern="[1-9](\d){12}" ></ion-input>
         <div slot="end" (click)="onScan()">
-          <ion-icon  name="scan-circle" style="font-size: 25px;"  ></ion-icon>
+          <ion-icon name="scan-circle" style="font-size: 25px;"></ion-icon>
         </div>
       </ion-item>
+    <ion-text color="danger">
+      <p [hidden]="!barCode.errors?.pattern" padding-start>请输入正确的条码</p>
+    </ion-text>
       <ion-item detail>
         <ion-label position="fixed">名称<ion-text color="danger">*</ion-text>
         </ion-label>
         <ion-input name="name" required type="text" [(ngModel)]="product.name" #name="ngModel"
-        pattern="^[\u4e00-\u9fa5_a-zA-Z0-9]+$" placeholder="请输入名称"></ion-input>
+          pattern="^[\u4e00-\u9fa5_a-zA-Z0-9]+$" placeholder="请输入名称"></ion-input>
       </ion-item>
       <ion-text text-left color="danger" *ngIf="name.invalid && name.touched">
         <p [hidden]="!name.errors?.required">请输入名称</p>
@@ -43,15 +47,18 @@
       <ion-item (click)="selectCategory()" detail>
         <ion-label position="fixed">分类<ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-note slot="end" color="medium" style="font-size: inherit;" >{{ activeCategory.name }}&nbsp;
+        <ion-note slot="end" color="medium" style="font-size: inherit;">{{ activeCategory.name }}&nbsp;
         </ion-note>
       </ion-item>
-      <br />
       <ion-item>
         <ion-label position="fixed">售价<ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input name="price" required placeholder="输入商品售价" type="number" [(ngModel)]="product.price"></ion-input>
+        <ion-input name="price" #price="ngModel" required placeholder="输入商品售价" type="number" [(ngModel)]="product.price" pattern="^[0-9]*$"></ion-input>
       </ion-item>
+      <ion-text text-left color="danger" *ngIf="price.invalid && price.touched">
+        <p [hidden]="!price.errors?.required">请输入售价</p>
+        <p [hidden]="!price.errors?.pattern" padding-start>只能输入数字</p>
+      </ion-text>
       <ion-item>
         <ion-label position="fixed">进价</ion-label>
         <ion-input name="purchasePrice" placeholder="输入商品进价" type="number" [(ngModel)]="product.purchasePrice">
