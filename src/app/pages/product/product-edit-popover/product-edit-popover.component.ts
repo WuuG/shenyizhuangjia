@@ -28,6 +28,8 @@ export class ProductEditPopoverComponent implements OnInit {
   }
   gotoproductedit() {
     this.popoverController.dismiss();
+    console.log('passID',this.passID);
+    
     this.router.navigate(['/product/edit', this.passID]);
   }
   async DelProduct() {
@@ -40,6 +42,7 @@ export class ProductEditPopoverComponent implements OnInit {
           handler:() => {
             this.productService.DelProduct(this.passID);
             this.productService.toast('删除商品成功')
+            this.router.navigate(['/product/list'])
           }
         },
         {text:'取消', role:'cancel'}

@@ -16,12 +16,12 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
+<img src="assets/img/androidbanner.png">
 <ion-content>
-  <img src="assets/img/androidbanner.png" alt="">
-  <ion-grid>
-    <ion-row>
-      <ion-col *ngFor="let s of sales">
+  
+  <ion-grid style="background-color: rgb(246,245,250); ">
+    <ion-row >
+      <ion-col *ngFor="let s of sales" >
         <h6>{{s.title}}</h6>
         <h4><span>{{s.current | number:'1.2-2'}}元</span></h4>
         <p style='font-size:x-small'>
@@ -34,8 +34,8 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-row class="grid">
-    <ion-col size="3">
+  <ion-row >
+    <ion-col size="3" class="grid-col" >
       <div class="grid-item">
         <ion-thumbnail>
           <img class="shortcu-icon" src="assets/img/add_salse.png" routerLink="/product/add">
@@ -43,7 +43,7 @@
         <div>新增商品</div>
       </div>
     </ion-col>
-    <ion-col size="3">
+    <ion-col size="3" class="grid-col">
       <div class="grid-item">
         <ion-thumbnail>
         <img class="shortcu-icon" src="assets/img/add_user.png">
@@ -51,7 +51,7 @@
         <div>新增会员</div>
       </div>
     </ion-col>
-    <ion-col size="3">
+    <ion-col size="3" class="grid-col">
       <div class="grid-item">
         <ion-thumbnail>
         <img class="shortcu-icon" src="assets/img/sales_account.png">
@@ -59,7 +59,7 @@
         <div>收银管理</div>
       </div>
     </ion-col>
-    <ion-col size="3">
+    <ion-col size="3" class="grid-col">
       <div class="grid-item">
         <ion-thumbnail>
         <img class="shortcu-icon" src="assets/img/a_note.png">
@@ -68,8 +68,8 @@
       </div>
     </ion-col>
   </ion-row>
-  <ion-row class="grid">
-    <ion-col size="3">
+  <ion-row >
+    <ion-col size="3" class="grid-col">
       <div class="grid-item" routerLink="/product/list">
         <ion-thumbnail>
           <img class="shortcu-icon" src="assets/img/sales_management.png">
@@ -77,7 +77,7 @@
         <div>商品管理</div>
       </div>
     </ion-col>
-    <ion-col size="3">
+    <ion-col size="3"class="grid-col">
       <div class="grid-item">
         <ion-thumbnail>
         <img class="shortcu-icon" src="assets/img/user_management.png">
@@ -85,7 +85,7 @@
         <div>会员管理</div>
       </div>
     </ion-col>
-    <ion-col size="3">
+    <ion-col size="3" class="grid-col">
       <div class="grid-item">
         <ion-thumbnail>
         <img class="shortcu-icon" src="assets/img/shop_management.png">
@@ -93,7 +93,7 @@
         <div>销售查询</div>
       </div>
     </ion-col>
-    <ion-col size="3">
+    <ion-col size="3" class="grid-col">
       <div class="grid-item">
         <ion-thumbnail>
         <img class="shortcu-icon" src="assets/img/analysis.png">
@@ -102,8 +102,8 @@
       </div>
     </ion-col>
   </ion-row>
-  <ion-row class="grid">
-    <ion-col size="3">
+  <ion-row >
+    <ion-col size="3" class="grid-col">
       <div class="grid-item">
         <ion-thumbnail>
           <img class="shortcu-icon" src="assets/img/gongying_more.png">
@@ -111,7 +111,7 @@
         <div>供应商管理</div>
       </div>
     </ion-col>
-    <ion-col size="3">
+    <ion-col size="3" class="grid-col">
       <div class="grid-item">
         <ion-thumbnail>
         <img class="shortcu-icon" src="assets/img/guandan_more.png">
@@ -119,8 +119,8 @@
         <div>挂单</div>
       </div>
     </ion-col>
-    <ion-col size="3">
-      <div class="grid-item">
+    <ion-col size="3" class="grid-col"> 
+      <div class="grid-item" >
         <ion-thumbnail>
         <img class="shortcu-icon" src="assets/img/image_addsales.png">
       </ion-thumbnail>
@@ -128,4 +128,5 @@
       </div>
     </ion-col>
   </ion-row>
+  <wgd-copyright  [bottom]="'20px'"></wgd-copyright>
 </ion-content>

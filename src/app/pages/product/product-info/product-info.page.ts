@@ -43,6 +43,7 @@ export class ProductInfoPage implements OnInit {
       translucent: false,
       componentProps: {
         passProduct: this.product,
+        passID: this.productID,
       }
     });
   
@@ -54,7 +55,6 @@ export class ProductInfoPage implements OnInit {
       cssClass: 'edit-modal',
       componentProps: {
         passProduct: this.product,
-        passID: this.productID
       }
     })
     return await modal.present();
