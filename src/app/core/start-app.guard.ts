@@ -24,7 +24,7 @@ export class StartAppGuard implements CanActivate {
       this.localStorageService.set('APP', appConfig);
       return true;
     }
-    else if (logined.UID === undefined || logined.UID === -1 ) {
+    else if (logined.UID === undefined || logined.UID === -1 ||Date.now() > logined.expired ) {
       if(Date.now() > logined.expired) {
         this.localStorageService.remove('login_ifo');
       }

@@ -46,7 +46,7 @@
 <ion-content *ngIf="products.length !== 0">
   <ion-list lines="none">
     <ion-item>
-      <ion-label>总库存 3402件，总成本 98028元 </ion-label>
+      <ion-label>总库存 {{allInventoty}}件，总成本 {{allCost}}元 </ion-label>
       <ion-icon class="icon" slot="end" name="notifications"></ion-icon>
       <ion-icon class="icon" slot="end" name="add" [routerLink]="['/product/add']"></ion-icon>
     </ion-item>

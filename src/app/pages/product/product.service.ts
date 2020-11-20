@@ -51,6 +51,7 @@ export class ProductService {
       return Product[length - 1].id + 1;
     }
   }
+  
   async getList(index: number, size: number): Promise<AjaxResult> {
     let list = new AjaxResult(false,'null',{message: 'error',details:''})
     if (index < 0) {
@@ -64,10 +65,18 @@ export class ProductService {
     list.success = true;
     let Allproduct: Array<Product> = this.localStorageService.get('product',[]);
     console.log(Allproduct);
+    let productsCost: number = 0;
+    let productsinventory: number = 0;
+    for(let i = 0; i < Allproduct.length;i++) {
+      productsCost += Allproduct[i].price;
+      productsinventory += Allproduct[i].inventory
+    }
     let products = Allproduct.slice(0 ,(index * size -1))
     const productPageResult: ProductPageResult = {
       totalCount: Allproduct.length,
       products,
+      productsCost,
+      productsinventory
     }
     list.result = productPageResult;
     return list;
@@ -106,4 +115,19 @@ export class ProductService {
       }
     }
   }
+  // getListByCategoryId(index: number, size: number, categoryId: number): Promise<AjaxResult> {
+  //   let ajax = new AjaxResult(false,'null',{message: 'error',details: ''},);
+  //   if (index < 0) {
+  //     throw new Error('索引小于0！')
+  //   }
+  //   if (index <= 0) {
+  //     throw new Error('数量应大于0！')
+  //   }
+  //   ajax.success = true;
+
+
+
+
+  //   return ajax;
+  // }
 }

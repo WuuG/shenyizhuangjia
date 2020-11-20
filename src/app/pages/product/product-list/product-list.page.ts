@@ -16,6 +16,8 @@ export class ProductListPage implements OnInit {
   total: number;
   queryTerm: string;
   categoryId: number;
+  allCost : number;
+  allInventoty: number;
   constructor(
     private loadingController: LoadingController,
     private router: Router,
@@ -42,10 +44,12 @@ export class ProductListPage implements OnInit {
   }
   async refreshList() {
     try {
-      const result = await this.productService.getList(this.currentIndex, 10);
+      // const result = await this.productService.getList(this.currentIndex, 10);
       const list: ProductPageResult = await (await this.productService.getList(this.currentIndex, 10)).result;
       this.total = list.totalCount;
       this.products = list.products;
+      this.allCost = list.productsCost;
+      this.allInventoty = list.productsinventory;
       console.log(this.products);
     } catch (error) {
       console.log(error);
