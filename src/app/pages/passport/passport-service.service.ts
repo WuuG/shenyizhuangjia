@@ -122,7 +122,7 @@ export class PassportServiceService {
    * @param id userid
    * @param overduetime 过期时间
    */
-  private setlogintime(id: number, overduetime: number= Date.now() + 5 * 24 * 60 * 60 * 1000) {
+  private setlogintime(id: number, overduetime: number= Date.now() + 5 * 60 * 1000) {
     let loginIfo: any = this.localStorageService.get('login_ifo', {
       UID: -1,
       expired: 100

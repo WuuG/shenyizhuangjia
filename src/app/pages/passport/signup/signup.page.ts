@@ -93,7 +93,7 @@ export class SignupPage implements OnInit {
       this.onNext();
     }
     else {
-      this.presentToast('您输入的验证码错误!');
+      this.presentToast('您输入的验证码错误或者已过期!');
     }
   }
   async presentToast(message = '您输入的验证码错误!') {

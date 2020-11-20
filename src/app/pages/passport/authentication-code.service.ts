@@ -20,7 +20,7 @@ export class AuthenticationCodeService {
   //  }
   createCode(count: number): string{
     this.code = '';
-    this.deadline = Date.now() + 60 * 10 * 1000;
+    this.deadline = Date.now() + 60 * 1000;
     for (let i = 0; i < count; i++){
       this.code += Math.floor(Math.random() * 10);
     }
@@ -29,6 +29,7 @@ export class AuthenticationCodeService {
   // 验证用户输入的短信验证码是否一致，是否过期
   validate(value: string): boolean{
     const now = Date.now();
+    console.log('now',now,'this.deadline',this.deadline);
     return value === this.code && now < this.deadline;
   }
 }
