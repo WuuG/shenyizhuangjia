@@ -1,7 +1,10 @@
 <ion-header >
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button text="返回" color="light"></ion-back-button>
+    <ion-buttons slot="start" class="padding-top">
+      <ion-button (click)="onback()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+        返回
+      </ion-button>
     </ion-buttons>
     <ion-title>编辑分类</ion-title>
   </ion-toolbar>

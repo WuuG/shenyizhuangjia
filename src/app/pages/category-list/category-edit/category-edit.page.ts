@@ -1,8 +1,7 @@
 import { LocalStorageService } from './../../../shared/services/local-storage.service';
-import { Product } from './../../product/product';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, IonItemSliding, ModalController, ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { AlertController, IonItemSliding, ModalController, ToastController, NavController } from '@ionic/angular';
 import { Category } from 'src/app/shared/category';
 import { CategoryNameEditPage } from '../category-name-edit/category-name-edit.page';
 import { CategoryService } from '../category.service';
@@ -22,7 +21,7 @@ export class CategoryEditPage implements OnInit {
     private categoryService: CategoryService,
     private activatedRoute: ActivatedRoute,
     private alertController: AlertController,
-    private router: Router,
+    private navController:NavController,
     private toastCtrl: ToastController,
     private localStorageService: LocalStorageService,
   ) {
@@ -96,7 +95,7 @@ export class CategoryEditPage implements OnInit {
               } else if (this.category.children.length === 0) {
                 item.close();
                 this.categoryService.deleteCategoryById(this.category.id);
-                this.router.navigateByUrl('/category');
+               this.onback();
                 this.toast('分类删除成功')
               } else {
                 item.close();
@@ -145,5 +144,8 @@ export class CategoryEditPage implements OnInit {
       duration: 2000,
     })
     toast.present()
+  }
+  onback() {
+    this.categoryService.onback();
   }
 }

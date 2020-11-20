@@ -1,7 +1,7 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from './../category.service';
 import { Component, OnInit } from '@angular/core';
-import { MenuController, AlertController, ToastController } from '@ionic/angular';
+import { MenuController, AlertController, ToastController, NavController } from '@ionic/angular';
 import { Category } from 'src/app/shared/category';
 
 @Component({
@@ -24,7 +24,7 @@ export class CategoryAddPage implements OnInit {
     private categoryService: CategoryService,
     private activatedRoute: ActivatedRoute,
     private alertController: AlertController,
-    private router: Router,
+    private navController: NavController,
   ) {
     this.menuController.enable(false);
     this.activatedRoute.queryParams.subscribe(queryParams => {
@@ -82,7 +82,7 @@ export class CategoryAddPage implements OnInit {
         buttons: ['确定']
       });
       alert.present();
-      this.router.navigateByUrl('category');
+      this.onback();
     } else {
       const alert = await this.alertController.create({
         message: '商品类别不可重复',
@@ -102,7 +102,7 @@ export class CategoryAddPage implements OnInit {
         buttons: ['确定'],
       });
       alert.present();
-      this.router.navigateByUrl('category');
+      this.onback();
     } else {
       const alert = await this.alertController.create({
         message: '商品类别不能重复',
@@ -110,5 +110,8 @@ export class CategoryAddPage implements OnInit {
       });
       alert.present();
     }
+  }
+  onback(){
+    this.categoryService.onback();
   }
 }

@@ -36,7 +36,6 @@ export class AppComponent implements OnInit {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      // 现在改要动很多东西，算了
       this.statusBar.overlaysWebView(true);
       this.splashScreen.hide();
     });

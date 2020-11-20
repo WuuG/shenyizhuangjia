@@ -1,35 +1,38 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button slot="start" text='返回'></ion-back-button>
+    <ion-buttons slot="start" class="padding-top">
+      <ion-button (click)="onback()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+        返回
+      </ion-button>
     </ion-buttons>
     <ion-title *ngIf="id===0">新增大分类</ion-title>
     <ion-title *ngIf="id!==0">新增小分类</ion-title>
   </ion-toolbar>
 </ion-header>
 
-  <ion-content color="light">
-    <form (ngSubmit)="onsave()" #addCategoryForm="ngForm" novalidate>
-      <ion-list  lines="none">
-        <ion-item *ngIf="id==0">
-          <ion-label position="fixed">大分类</ion-label>
-          <ion-input name="name" type="text" placeholder="商品大分类名称" [(ngModel)]="category.name"></ion-input>
-        </ion-item>
+<ion-content color="light">
+  <form (ngSubmit)="onsave()" #addCategoryForm="ngForm" novalidate>
+    <ion-list lines="none">
+      <ion-item *ngIf="id==0">
+        <ion-label position="fixed">大分类</ion-label>
+        <ion-input name="name" type="text" placeholder="商品大分类名称" [(ngModel)]="category.name"></ion-input>
+      </ion-item>
 
-         <ion-item-divider *ngIf="id!=0" >{{name}}</ion-item-divider>
- 
-        
-        <ion-item *ngFor="let c of children">
-          <ion-label position="fixed">小分类</ion-label>
-          <ion-input name="children{{c.id}}" type="text" placeholder="商品小分类名称" [(ngModel)]="c.name"></ion-input>
-        </ion-item>
-        <ion-item detail="false" (click)="onAddSubCategory()">
-          <ion-icon slot="start" name='add-circle' color="primary"></ion-icon>
-          <ion-label color="primary">新增小分类</ion-label>
-        </ion-item>
-        <div padding-horizontal>
-          <ion-button type="submit" expand="full" color="primary" [disabled]="addCategoryForm.invalid">保存</ion-button>
-        </div>
-      </ion-list>
-    </form>
-  </ion-content>
+      <ion-item-divider *ngIf="id!=0">{{name}}</ion-item-divider>
+
+
+      <ion-item *ngFor="let c of children">
+        <ion-label position="fixed">小分类</ion-label>
+        <ion-input name="children{{c.id}}" type="text" placeholder="商品小分类名称" [(ngModel)]="c.name"></ion-input>
+      </ion-item>
+      <ion-item detail="false" (click)="onAddSubCategory()">
+        <ion-icon slot="start" name='add-circle' color="primary"></ion-icon>
+        <ion-label color="primary">新增小分类</ion-label>
+      </ion-item>
+      <div padding-horizontal>
+        <ion-button type="submit" expand="full" color="primary" [disabled]="addCategoryForm.invalid">保存</ion-button>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

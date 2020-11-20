@@ -3,7 +3,7 @@ import { Category } from './../../shared/category';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from './category.service';
 import { Component, OnInit } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
 
 @Component({
@@ -15,17 +15,18 @@ export class CategoryListPage implements OnInit {
   categories: Array<Category>;
   activeCategory: Category;
   activeSubCategories: Category;
-  From = 'acac';
+  // From = 'acac';
   categoryChangeSubscription = null;
   constructor(private categoryService: CategoryService,
     private actionSheetCtrl: ActionSheetController,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private navController: NavController,
   ) {
-    this.activatedRoute.queryParams.subscribe(queryParams => {
-      this.From = queryParams.From;
-    });
+    // this.activatedRoute.queryParams.subscribe(queryParams => {
+    //   this.From = queryParams.From;
+    // });
 
     categoryService.getAll().then(data => {
       this.categories = data.result;
@@ -60,18 +61,15 @@ export class CategoryListPage implements OnInit {
   //   this.activeSubCategories = this.activeCategory.children[id % 10 - 1];
   // }
   onSelect(category: Category): boolean {
-    console.log("Form =", this.From);
-    if (this.From === 'ProductAdd') {
+    // console.log("Form =", this.From);
       let activeCategory = {
         id: category.id,
         name: category.name
       };
       this.categoryService.categorySubject.next(activeCategory);
-      this.location.back();
+      // this.location.back();
+      this.navController.back();
       return true;
-    }
-    return false;
-
   }
 
   async onPresentActionSheet() {

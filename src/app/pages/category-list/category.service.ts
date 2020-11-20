@@ -1,3 +1,4 @@
+import { NavController } from '@ionic/angular';
 import { Category } from 'src/app/shared/category';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { Injectable } from '@angular/core';
@@ -14,7 +15,7 @@ export class CategoryService {
   categories: Category[]
   categorySubject = new Subject<ActiveCategory>();
   private changed = new Subject<boolean>();
-  constructor(private localStorageService: LocalStorageService) {
+  constructor(private localStorageService: LocalStorageService, private navController:NavController) {
     this.activeCategory = { id: 5, name: '默认类别' };
     this.getAll()
   }
@@ -215,5 +216,7 @@ export class CategoryService {
   watchCategory(): Observable<ActiveCategory> {
     return this.categorySubject.asObservable();
   }
-
+  onback(){
+    this.navController.back();
+  }
 }

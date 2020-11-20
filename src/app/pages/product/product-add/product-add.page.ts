@@ -149,12 +149,12 @@ export class ProductAddPage implements OnInit, OnDestroy {
     });
   }
   selectCategory() {
-    this.router.navigate(['/category'], {
-      queryParams: {
-        From: 'ProductAdd'
-      }
-    });
-    // this.router.navigateByUrl('/category-list');
+    // this.router.navigate(['/category'], {
+    //   queryParams: {
+    //     From: 'ProductAdd'
+    //   }
+    // });
+    this.router.navigateByUrl('/category');
   }
   async alerterr(header: string, message: string, buttons: string[]) {
     const alert = await this.AlertController.create({
