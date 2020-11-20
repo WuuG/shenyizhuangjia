@@ -17,7 +17,9 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
   entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      mode:'ios',
+    }),
     AppRoutingModule,
     SharedModule,
   ],
