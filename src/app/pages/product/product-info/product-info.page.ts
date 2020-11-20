@@ -3,8 +3,9 @@ import { LocalStorageService } from './../../../shared/services/local-storage.se
 import { Product } from './../product';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular';
 import { ProductEditPopoverComponent } from '../product-edit-popover/product-edit-popover.component';
+import { ProductEditModalComponent } from '../product-edit-modal/product-edit-modal.component';
 
 @Component({
   selector: 'app-product-info',
@@ -18,6 +19,7 @@ export class ProductInfoPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
     private popoverController: PopoverController,
+    private modalController:ModalController,
 
   ) {
     this.productID = this.activatedRoute.snapshot.params['productID']
@@ -41,13 +43,20 @@ export class ProductInfoPage implements OnInit {
       translucent: false,
       componentProps: {
         passProduct: this.product,
-        passID: this.productID
       }
     });
   
     await popover.present();
   }
-  onshare() {
-    
+  async onshareModal() {
+    const modal = await this.modalController.create({
+      component: ProductEditModalComponent,
+      cssClass: 'edit-modal',
+      componentProps: {
+        passProduct: this.product,
+        passID: this.productID
+      }
+    })
+    return await modal.present();
   }
 }

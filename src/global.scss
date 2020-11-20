@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -26,15 +26,20 @@
 @import "~@ionic/angular/css/flex-utils.css";
 .edit-top-popover .popover-content {
     width: 120px;
-  }
+}
+.edit-modal .modal-wrapper {
+    --max-height: 35%;
+    position: absolute;
+    bottom: 0;
+}
 .toolbar-md {
-    min-height: 67px !important;//47px的头部改成67px
+    min-height: 67px !important; //47px的头部改成67px
 }
 ion-title {
-    padding-top: 20px;//标题向上留20px
+    padding-top: 20px; //标题向上留20px
 }
-ion-back-button{
-    padding-top: 20px;//返回箭头下降20px
+ion-back-button {
+    padding-top: 20px; //返回箭头下降20px
 }
 //iOS头部加20px
 .toolbar-ios {

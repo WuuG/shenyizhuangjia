@@ -1,0 +1,34 @@
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <img (click)="onshare('微信')" class="icon" src="assets/img/wechat.png" alt="">
+        <ion-text color="medium">
+          <p>好友</p>
+        </ion-text>
+      </ion-col>
+      <ion-col  >
+       <img (click)="onshare('朋友圈')" class="icon" src="assets/img/logo-moments.png" alt="">
+       <ion-text color="medium">
+        <p>朋友圈</p>
+      </ion-text>
+      </ion-col>
+      <ion-col  >
+      <img (click)="onshare('短信')" class="icon" src="assets/img/sms.png" alt="">
+      <ion-text color="medium">
+        <p>短信</p>
+      </ion-text>
+      </ion-col>
+      <ion-col >
+        <img (click)="onshare('QQ')" class="icon" src="assets/img/QQ.png" alt="">
+        <ion-text color="medium">
+          <p>QQ</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+    <ion-button (click)="onback()" style="margin-top: 25px;" expand="full" color="light">取消</ion-button>
+
+</ion-content>
