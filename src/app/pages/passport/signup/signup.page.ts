@@ -78,7 +78,8 @@ export class SignupPage implements OnInit {
       this.presentToast('手机号已注册！');
       return;
     }
-
+    this.onSendCode();
+    this.countDown();
     if (form.valid) {
       this.onNext();
     }
@@ -86,6 +87,7 @@ export class SignupPage implements OnInit {
   onSendCode() {
     const code = this.authcodeservise.createCode(4);
     this.presentToastWithOptions(code);
+    console.log(code);
   }
   onValidateCode() {
     const match = this.authcodeservise.validate(this.signup.code);
@@ -117,7 +119,7 @@ export class SignupPage implements OnInit {
     const toast = await this.toastController.create({
       message: code,
       position: 'bottom',
-      duration: 3000,
+      duration: 4000,
       buttons: [
         {
           side: 'start',

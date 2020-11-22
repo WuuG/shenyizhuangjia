@@ -59,4 +59,5 @@ export class LoginPage implements OnInit {
 onForgotPassword() {
   this.router.navigateByUrl('passport/forgot-password');
 }
+
 }

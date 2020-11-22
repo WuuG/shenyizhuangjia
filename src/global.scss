@@ -36,18 +36,18 @@
     min-height: 67px !important; //47px的头部改成67px
 }
 ion-title {
-    padding-top: 20px; //标题向上留20px
+    padding-top: 30px; //标题向上留20px
 }
 ion-back-button {
-    padding-top: 20px; //返回箭头下降20px
+    padding-top: 30px; //返回箭头下降20px
 }
 //iOS头部加20px
 .toolbar-ios {
     min-height: 66px !important;
 }
 .toolbar-ios ion-title {
-    padding: 20px 90px 1px !important;
+    padding: 30px 90px 1px !important;
 }
 .padding-top {
-    padding-top: 20px;
+    padding-top: 30px;
 }
