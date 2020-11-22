@@ -1,3 +1,4 @@
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { IonSlides, MenuController } from '@ionic/angular';
@@ -11,13 +12,19 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 })
 export class WelcomePage implements OnInit {
   showSkip = true;
-  @ViewChild('slides', {static: true}) slides: IonSlides;
-  constructor(private localStorageService: LocalStorageService, private router: Router, private menuController: MenuController) {
+  @ViewChild('slides', { static: true }) slides: IonSlides;
+  constructor(
+    private localStorageService: LocalStorageService,
+    private router: Router,
+    private menuController: MenuController,
+    private statusBar:StatusBar,
+    ) {
     this.menuController.enable(false);
-    }
+    this.statusBar.styleDefault();
+  }
   ngOnInit() {
   }
-  onSkip(){
+  onSkip() {
     this.router.navigateByUrl('passport/signup');
     // this.slides.slideTo(3);
   }

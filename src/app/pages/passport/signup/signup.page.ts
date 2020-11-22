@@ -1,3 +1,4 @@
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { PassportServiceService } from './../passport-service.service';
 import { AuthenticationCodeService } from './../authentication-code.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -27,8 +28,10 @@ export class SignupPage implements OnInit {
     public toastController: ToastController,
     private passportServiceService: PassportServiceService,
     private menuController: MenuController,
+    private statusBar:StatusBar,
   ) {
     this.menuController.enable(false);
+    this.statusBar.styleDefault();
   }
   signup: Signup = {
     phone: '',
