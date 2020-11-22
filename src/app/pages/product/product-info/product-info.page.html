@@ -17,10 +17,10 @@
       </ion-thumbnail>
     </ion-item>
     <ion-item *ngIf="product.images.length !== 0">
-      <ion-thumbnail *ngFor="let img of product.images">
+      <ion-thumbnail *ngFor="let img of product.images" class="toplist">
         <img src={{img}} />
       </ion-thumbnail>
-      <ion-thumbnail>
+      <ion-thumbnail class="toplist">
         <img src="assets/img/supplier_icon.png" />
       </ion-thumbnail>
     </ion-item>
