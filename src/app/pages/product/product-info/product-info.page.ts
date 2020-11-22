@@ -3,7 +3,7 @@ import { LocalStorageService } from './../../../shared/services/local-storage.se
 import { Product } from './../product';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController, ViewWillEnter } from '@ionic/angular';
 import { ProductEditPopoverComponent } from '../product-edit-popover/product-edit-popover.component';
 import { ProductEditModalComponent } from '../product-edit-modal/product-edit-modal.component';
 
@@ -12,7 +12,7 @@ import { ProductEditModalComponent } from '../product-edit-modal/product-edit-mo
   templateUrl: './product-info.page.html',
   styleUrls: ['./product-info.page.scss'],
 })
-export class ProductInfoPage implements OnInit {
+export class ProductInfoPage implements OnInit, ViewWillEnter {
   product: Product;
   productID:number;
   constructor(
@@ -25,6 +25,11 @@ export class ProductInfoPage implements OnInit {
     this.productID = this.activatedRoute.snapshot.params['productID']
     // console.log('productID:',this.productID)
     this.getProductInfo(this.productID);
+  }
+  ionViewWillEnter(): void {
+    this.getProductInfo(this.productID);
+    console.log('库存为：',this.product.inventory);
+    
   }
 
   ngOnInit() {

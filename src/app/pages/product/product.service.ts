@@ -102,7 +102,7 @@ export class ProductService {
   editProduct(ID: number, newProduct: Product) {
     let products = this.localStorageService.get('product',[]);
     console.log('编辑商品中 product =',products[ID])
-    products[ID] = newProduct;
+    products[ID - 1] = newProduct;
     this.localStorageService.set('product',products);
     console.log('商品改动成功 product =',products[ID])
   }
