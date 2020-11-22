@@ -1,3 +1,4 @@
+import { ProductListPage } from './../product-list/product-list.page';
 import { PopoverController, AlertController } from '@ionic/angular';
 import { ProductService } from './../product.service';
 import { Router } from '@angular/router';

@@ -140,7 +140,7 @@ export class ProductAddPage implements OnInit, OnDestroy {
     }
     this.productService.insert(this.product).then(async (data) => {
       if (data.success) {
-        this.alerterr('提示', '添加成功', ['确定'])
+        this.productService.toast('商品添加成功');
         if (ct) {
           this.initProduct();
           this.product.categoryName = '默认分类';

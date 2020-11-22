@@ -2,7 +2,7 @@ import { ProductService } from './../product.service';
 import { Router } from '@angular/router';
 import { Product } from './../product';
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, ViewWillEnter } from '@ionic/angular';
 import { ProductPageResult } from 'src/app/shared/interfaces/product-page-result';
 
 @Component({
@@ -10,7 +10,7 @@ import { ProductPageResult } from 'src/app/shared/interfaces/product-page-result
   templateUrl: './product-list.page.html',
   styleUrls: ['./product-list.page.scss'],
 })
-export class ProductListPage implements OnInit {
+export class ProductListPage implements OnInit, ViewWillEnter {
   private currentIndex: number;
   products: Product[];
   total: number;
@@ -35,6 +35,15 @@ export class ProductListPage implements OnInit {
     this.refreshList();
     this.loadingController.dismiss();
   }
+  async ionViewWillEnter() {
+    const loading = await this.loadingController.create({
+      message: '正在加载数据，请稍候...',
+      spinner: 'bubbles',
+    });
+    this.refreshList();
+    loading.present();
+    this.loadingController.dismiss();
+  }
   onInitproduct() {
     this.currentIndex = 1,
     this.total = 0,
@@ -42,6 +51,7 @@ export class ProductListPage implements OnInit {
     this.categoryId = -1;
     this.products = [];
   }
+
   async refreshList() {
     try {
       // const result = await this.productService.getList(this.currentIndex, 10);
@@ -90,5 +100,5 @@ export class ProductListPage implements OnInit {
   // gotoproductInfo(productID: number) {
   //   this.router.navigate(['/product/info',);
   // }
-
+  
 }

@@ -127,9 +127,10 @@ export class SignupPage implements OnInit {
             console.log('Favorite clicked');
           }
         }, {
-          text: '取消',
+          text: '填入验证码',
           role: 'cancel',
           handler: () => {
+            this.signup.code = code;
             console.log('Cancel clicked');
           }
         }
