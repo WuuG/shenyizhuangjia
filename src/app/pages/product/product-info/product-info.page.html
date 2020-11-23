@@ -20,7 +20,7 @@
       <ion-thumbnail *ngFor="let img of product.images" class="toplist">
         <img src={{img}} />
       </ion-thumbnail>
-      <ion-thumbnail class="toplist">
+      <ion-thumbnail class="toplist" *ngIf="!(product.images.length >=3)">
         <img src="assets/img/supplier_icon.png" />
       </ion-thumbnail>
     </ion-item>
