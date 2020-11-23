@@ -121,8 +121,9 @@ export class SignupPage implements OnInit {
   async presentToastWithOptions(code: string) {
     const toast = await this.toastController.create({
       message: code,
-      position: 'bottom',
-      duration: 4000,
+      cssClass: 'passcode',
+      position: 'top',
+      duration: 10000000,
       buttons: [
         {
           side: 'start',
