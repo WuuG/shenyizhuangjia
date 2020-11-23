@@ -124,19 +124,4 @@ export class ProductService {
       }
     }
   }
-  // getListByCategoryId(index: number, size: number, categoryId: number): Promise<AjaxResult> {
-  //   let ajax = new AjaxResult(false,'null',{message: 'error',details: ''},);
-  //   if (index < 0) {
-  //     throw new Error('索引小于0！')
-  //   }
-  //   if (index <= 0) {
-  //     throw new Error('数量应大于0！')
-  //   }
-  //   ajax.success = true;
-
-
-
-
-  //   return ajax;
-  // }
 }
