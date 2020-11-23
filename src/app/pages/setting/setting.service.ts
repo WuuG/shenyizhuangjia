@@ -1,3 +1,4 @@
+import { User } from './../passport/user';
 import { LocalStorageService } from './../../shared/services/local-storage.service';
 import { Injectable } from '@angular/core';
 import { Shop } from './shop/shop';
@@ -26,7 +27,7 @@ export class SettingService {
     this.shops[i] = shop;
     this.setshops();
   }
-  getshop(id: number) {
+  getshop(id: number,user: User) {
     this.getstorage();
     let shop: Shop = null;
     for (const s of this.shops) {
@@ -40,7 +41,7 @@ export class SettingService {
     if (shop === null) {
       shop = {
         id,
-        Name: '',
+        Name: user.ShopName,
         SimpleName: '',
         HostName: '',
         TelePhone: '',

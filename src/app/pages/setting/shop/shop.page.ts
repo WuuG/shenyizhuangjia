@@ -14,7 +14,6 @@ export class ShopPage implements OnInit {
   shop: Shop;
   constructor(private passportService: PassportServiceService, private settingService: SettingService) {
     this.getUserIfo();
-
   }
 
   ngOnInit() {
@@ -25,7 +24,8 @@ export class ShopPage implements OnInit {
   }
   getUserIfo() {
     this.user = this.passportService.getloginUser();
-    this.shop = this.settingService.getshop(this.user.Id);
+    // console.log('user',this.user);
+    this.shop = this.settingService.getshop(this.user.Id,this.user);
   }
 }
 
