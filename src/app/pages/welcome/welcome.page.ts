@@ -25,8 +25,8 @@ export class WelcomePage implements OnInit {
   ngOnInit() {
   }
   onSkip() {
-    this.router.navigateByUrl('passport/signup');
-    // this.slides.slideTo(3);
+    // this.router.navigateByUrl('passport/signup');
+    this.slides.slideTo(2);
   }
 
   onSlideWillChange(event) {
