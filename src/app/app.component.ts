@@ -65,4 +65,10 @@ export class AppComponent implements OnInit {
     }
     return this.user !== undefined;
   }
+  beDarkstatus() {
+    this.statusBar.styleDefault();
+  }
+  beLightstatus() {
+    this.statusBar.styleLightContent();
+  }
 }

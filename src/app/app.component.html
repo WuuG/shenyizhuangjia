@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay" >
+    <ion-menu contentId="main-content" type="overlay" (ionWillOpen)="beDarkstatus()" (ionDidClose)="beLightstatus()">
       <ion-content>
           <ion-list *ngIf="islogin()" style="margin-top: 16px;">
             <ion-item color="medium">

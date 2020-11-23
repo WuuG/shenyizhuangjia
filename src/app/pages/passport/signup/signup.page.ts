@@ -123,7 +123,7 @@ export class SignupPage implements OnInit {
       message: code,
       cssClass: 'passcode',
       position: 'top',
-      duration: 10000000,
+      duration: 4000,
       buttons: [
         {
           side: 'start',
