@@ -13,29 +13,33 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-toolbar color="light">
-  <ion-searchbar placeholder="请输入商品名称，拼音，数字...">
-  </ion-searchbar>
-  <ion-buttons slot="end">
-    <ion-button expand="block" fill="outline" color="primary">
-      商品盘点
-    </ion-button>
-  </ion-buttons>
-</ion-toolbar>
+
+
+
 
 <ion-content *ngIf="products.length === 0">
+  <div style="display: flex;">
+    <ion-searchbar placeholder="请输入商品名称，拼音，数字..." style="padding-top: 13px;" >
+    </ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button expand="block" fill="outline" color="primary">
+        商品盘点
+      </ion-button>
+    </ion-buttons>
+  </div>
+
   <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-down-outline" pullingText="下拉可以刷新" refreshingSpinner="circles"
       refreshingText="正在加载...">
     </ion-refresher-content>
   </ion-refresher>
-  
+
   <img src="assets/img/commodity_no.png" alt="">
   <ion-text color="medium">
     <p>您还没有任何商品信息</p>
     <p>您可以</p>
   </ion-text>
-  <ion-button [routerLink]="['/product/add']"   expand="block" fill="solid" color="primary">
+  <ion-button [routerLink]="['/product/add']" expand="block" fill="solid" color="primary">
     新增商品
   </ion-button>
   <wgd-copyright></wgd-copyright>
@@ -44,6 +48,16 @@
 
 
 <ion-content *ngIf="products.length !== 0">
+  <div style="display: flex;">
+    <ion-searchbar placeholder="请输入商品名称，拼音，数字..." style="padding-top: 13px;" >
+    </ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button expand="block" fill="outline" color="primary">
+        商品盘点
+      </ion-button>
+    </ion-buttons>
+  </div>
+
   <ion-list lines="none">
     <ion-item>
       <ion-label>总库存 {{allInventoty}}件，总成本 {{allCost}}元 </ion-label>

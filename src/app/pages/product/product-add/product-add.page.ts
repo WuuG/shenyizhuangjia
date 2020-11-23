@@ -138,6 +138,11 @@ export class ProductAddPage implements OnInit, OnDestroy {
     if(!this.product.inventory) {
       this.product.inventory = 0;
     }
+    console.log('this.product.price',this.product.price);
+    
+    if(!this.product.purchasePrice) {
+      this.product.purchasePrice = 0;
+    }
     this.productService.insert(this.product).then(async (data) => {
       if (data.success) {
         this.productService.toast('商品添加成功');
