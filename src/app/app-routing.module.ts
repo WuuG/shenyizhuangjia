@@ -18,10 +18,6 @@ const routes: Routes = [
     // canActivate : [StartAppGuard]
   },
   {
-    path: 'text',
-    loadChildren: () => import('./pages/text/text.module').then( m => m.TextPageModule)
-  },
-  {
     path: 'passport',
     loadChildren: () => import('./pages/passport/passport.module').then( m => m.PassportModule)
   },
